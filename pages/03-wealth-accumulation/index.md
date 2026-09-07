@@ -1,3 +1,5 @@
+import PortfolioAllocation from '../../components/PortfolioAllocation'
+
 # Wealth Accumulation
 
 Investing is not about picking the right stock; it is about capturing the broad growth of human productivity over decades[span_0](start_span)[span_0](end_span). 
@@ -11,6 +13,8 @@ A DIY investor should focus on low-cost, highly liquid index funds[span_1](start
 Choose a model based on your time horizon and risk tolerance:
 * **The Aggressive Core (100% Equity):** Designed for investors with a 15+ year time horizon who can withstand high volatility. Allocate 80% to a Total U.S. Stock Market ETF (VTI or ITOT) and 20% to a Total International ETF (VXUS or IXUS).
 * **The Balanced Core (80/20):** Designed to smooth out the ride during severe market downturns. Allocate 80% to Global Equities (VT) and 20% to the Total Bond Market (BND or AGG).
+
+<PortfolioAllocation />
 
 ## Satellite Positions and Digital Assets
 Once your core is established, limit speculative or sector-specific bets to 1-5% of your total portfolio[span_5](start_span)[span_5](end_span). 
