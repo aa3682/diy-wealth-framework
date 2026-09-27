@@ -10,8 +10,10 @@ export default async function handler(req, res) {
   try {
     const { prompt } = req.body;
     
-    // Using 1.5 Flash for rapid, cost-effective text generation
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' }); 
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-1.5-pro',
+      systemInstruction: 'You are an expert CFP® professional assisting a self-directed investor. Provide concise, mathematically sound, and objective financial planning guidance. Focus on actionable frameworks and mechanical rules. Do not use generic chatbot filler.'
+    }); 
     
     const result = await model.generateContent(prompt);
     const response = await result.response;
