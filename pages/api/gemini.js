@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const { prompt } = req.body;
     
     const model = genAI.getGenerativeModel({ 
-      model: 'gemini-3.1-pro-preview',
+      model: 'gemini-2.5-flash',
       systemInstruction: 'You are an expert CFP® professional assisting a self-directed investor. Provide concise, mathematically sound, and objective financial planning guidance. Focus on actionable frameworks and mechanical rules. Do not use generic chatbot filler.'
     }); 
     
