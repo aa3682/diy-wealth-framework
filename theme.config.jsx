@@ -4,6 +4,11 @@ export default {
       DIY Wealth <span style={{ color: '#10b981' }}>Framework</span>
     </span>
   ),
+  head: (
+    <>
+      <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>" />
+    </>
+  ),
   project: {
     link: 'https://github.com/aa3682/diy-wealth-framework',
   },
@@ -12,6 +17,17 @@ export default {
     return {
       titleTemplate: '%s – DIY Wealth Framework',
     }
+  },
+  nextThemes: {
+    defaultTheme: 'dark',
+    forcedTheme: 'dark',
+  },
+  search: {
+    placeholder: 'Search the framework...',
+  },
+  toc: {
+    title: "On This Page",
+    float: true,
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
