@@ -18,7 +18,9 @@ export default function LeadCapture() {
       <p style={{ fontSize: '1rem', color: '#cbd5e1', marginBottom: '1.5rem', lineHeight: '1.6' }}>
         Stop guessing. Download the Millennial Money Clarity <strong>Notion Cash Flow Tracker</strong> and <strong>Google Sheets Net Worth Dashboard</strong> to build your systems today.
       </p>
-      <a href="#" style={{
+      
+      {/* Note the className addition here linking to your new CSS */}
+      <a href="#" className="cta-button-hover" style={{
         display: 'inline-block',
         backgroundColor: '#10b981',
         color: '#022c22',
@@ -26,11 +28,11 @@ export default function LeadCapture() {
         borderRadius: '6px',
         fontWeight: 'bold',
         textDecoration: 'none',
-        fontSize: '1rem',
-        transition: 'background-color 0.2s'
+        fontSize: '1rem'
       }}>
         Download the Free Templates
       </a>
+      
       <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '1.5rem' }}>
         Looking for personalized, one-on-one strategy? <br/>
         <a href="#" style={{ color: '#38bdf8', textDecoration: 'none', fontWeight: '600' }}>
