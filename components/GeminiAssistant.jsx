@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export default function GeminiAssistant() {
   const [prompt, setPrompt] = useState('');
@@ -102,8 +103,8 @@ export default function GeminiAssistant() {
       )}
 
       {response && !isLoading && (
-        <div style={{ marginTop: '1.5rem', padding: '1rem', borderTop: '1px solid rgba(156, 163, 175, 0.2)', whiteSpace: 'pre-wrap' }}>
-          {response}
+        <div style={{ marginTop: '1.5rem', padding: '1rem', borderTop: '1px solid rgba(156, 163, 175, 0.2)', lineHeight: '1.6' }}>
+          <ReactMarkdown>{response}</ReactMarkdown>
         </div>
       )}
       
