@@ -1,13 +1,46 @@
-import GeminiAssistant from '../components/GeminiAssistant'
+import { Callout, Tabs } from 'nextra/components'
 
-# Asset Allocation
+# Asset Allocation & Portfolio Construction
 
-Strategic asset allocation is the primary driver of portfolio variance and long-term returns. 
+Asset allocation is the primary driver of portfolio volatility and long-term returns. While individual security selection and market timing generate noise, the mechanical distribution of capital across broad asset classes dictates over 90% of a portfolio's variance and outcome.
 
-## Core Principles
+<Callout type="info">
+  **The Efficiency Mandate:** A self-directed investor should favor low-cost, passively managed index funds over active management to capture baseline market returns without the compounding drag of high expense ratios.
+</Callout>
 
-- **Risk Capacity vs. Tolerance:** Aligning mathematical ability to take risk with psychological willingness.
-- **Equity-to-Fixed Income Ratios:** Establishing a baseline glide path.
-- **Location Optimization:** Placing inefficient assets in tax-advantaged accounts.
+## Core Mechanical Principles
 
-<GeminiAssistant />
+1. **Broad Diversification:** Capital must be distributed across domestic equities, international equities, and fixed income to neutralize single-country or single-sector risk.
+2. **Low Correlation:** Portfolios require assets that do not move in perfect lockstep. When equities contract, high-quality fixed income should act as a structural ballast to preserve capital.
+3. **Cost Control:** Expense ratios compound negatively. Target core holdings with expense ratios at or below 0.10%.
+
+## Standardized Portfolio Recipes
+
+These mechanical templates provide foundational allocations that can be scaled according to your specific glide path and risk capacity.
+
+<Tabs items={['The Three-Fund Portfolio', 'Core and Satellite']}>
+  <Tabs.Tab>
+    The Three-Fund Portfolio is the benchmark for self-directed investors, offering total global diversification with minimal administrative complexity.
+    
+    * **Total US Stock Market (e.g., VTI):** 60% of overall Equity Allocation
+    * **Total International Stock Market (e.g., VXUS):** 40% of overall Equity Allocation
+    * **Total Bond Market (e.g., BND):** Scaled based on your specific age and glide path target
+    
+    **Mechanical Rule:** Rebalance annually, or when a single asset class drifts more than 5% absolute from its target weight.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The Core and Satellite model utilizes a massive, low-cost index fund for the majority of the portfolio while carving out a strictly defined percentage for conviction trades or thematic growth.
+    
+    * **The Core (80% - 90%):** Broad market index funds (e.g., S&P 500 or Total World Stock).
+    * **The Satellite (10% - 20%):** Individual equities, sector-specific ETFs, or alternative assets.
+    
+    **Mechanical Rule:** The satellite bucket must be hard-capped. Severe drawdowns in the satellite bucket must not trigger a panic liquidation of the core index funds.
+  </Tabs.Tab>
+</Tabs>
+
+## Rebalancing Triggers
+
+Rebalancing forces the mathematical discipline of buying low and selling high by trimming winners and buying underperforming assets. Execute rebalancing using one of two mechanical triggers:
+
+* **Time-Based:** Realign the portfolio to its target weights on a specific date every year (e.g., your birthday or the first trading day of January).
+* **Tolerance Band-Based:** Rebalance only when an asset class drifts by an absolute percentage (e.g., 5% or 10%) from its target allocation, ignoring the calendar entirely. This is mathematically more efficient but requires active portfolio monitoring.
