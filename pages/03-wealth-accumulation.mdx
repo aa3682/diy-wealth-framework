@@ -1,4 +1,5 @@
 import PortfolioAllocation from '../components/PortfolioAllocation'
+import { Tabs } from 'nextra/components'
 
 # Wealth Accumulation
 
@@ -11,8 +12,25 @@ A DIY investor should focus on low-cost, highly liquid index funds.
 
 ### Model Portfolios
 Choose a model based on your time horizon and risk tolerance:
-* **The Aggressive Core (100% Equity):** Designed for investors with a 15+ year time horizon who can withstand high volatility. Allocate 80% to a Total U.S. Stock Market ETF (VTI or ITOT) and 20% to a Total International ETF (VXUS or IXUS).
-* **The Balanced Core (80/20):** Designed to smooth out the ride during severe market downturns. Allocate 80% to Global Equities (VT) and 20% to the Total Bond Market (BND or AGG).
+
+<Tabs items={['The Aggressive Core', 'The Balanced Core', 'The Digital Satellite']}>
+  <Tabs.Tab>
+    **Goal:** 15+ year horizon, maximum growth, high volatility tolerance.
+    * **80% VTI / ITOT:** Total U.S. Stock Market
+    * **20% VXUS / IXUS:** Total International Stock Market
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Goal:** Smoother ride during severe market downturns.
+    * **80% VT:** Global Equities
+    * **20% BND / AGG:** Total Bond Market
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Goal:** Capture crypto network upside within traditional brokerage accounts.
+    * **75% VTI:** Total U.S. Stock Market
+    * **20% VXUS:** Total International
+    * **5% IBIT / ETHA:** Spot Bitcoin & Ethereum ETFs
+  </Tabs.Tab>
+</Tabs>
 
 <PortfolioAllocation />
 
