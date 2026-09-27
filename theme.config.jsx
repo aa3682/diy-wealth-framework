@@ -1,44 +1,32 @@
 export default {
   logo: (
-    <span style={{ fontWeight: 800, letterSpacing: '-0.5px', fontSize: '1.2rem' }}>
-      DIY Wealth Framework
+    <span style={{ fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-0.02em' }}>
+      DIY Wealth <span style={{ color: '#10b981' }}>Framework</span>
     </span>
   ),
   project: {
     link: 'https://github.com/aa3682/diy-wealth-framework',
   },
   docsRepositoryBase: 'https://github.com/aa3682/diy-wealth-framework/tree/main',
-  banner: {
-    key: 'gemini-assistant-banner',
-    text: (
-      <span>
-        ⚡ Gemini-powered planning tools are now live in the Asset Allocation module.
-      </span>
-    )
-  },
-  search: {
-    placeholder: 'Search framework, formulas, or rules...'
-  },
-  head: (
-    <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="DIY Wealth Framework" />
-      <meta property="og:description" content="Open-source financial planning, asset allocation, and tax-efficiency frameworks for the self-directed investor." />
-    </>
-  ),
   useNextSeoProps() {
     return {
       titleTemplate: '%s – DIY Wealth Framework',
     }
   },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    toggleButton: true,
+  },
   footer: {
     text: (
-      <span>
-        {new Date().getFullYear()} © AlignFlow LLC. Built for the self-directed investor.
-      </span>
+      <div style={{ width: '100%', textAlign: 'center', fontSize: '0.9rem', color: '#94a3b8' }}>
+        <p style={{ margin: '0 0 0.5rem 0' }}>
+          <strong>AlignFlow LLC</strong> © {new Date().getFullYear()}
+        </p>
+        <p style={{ margin: 0, fontSize: '0.8rem' }}>
+          This framework is an independent educational resource and is not affiliated with the Certified Financial Planner Board of Standards, Inc.
+        </p>
+      </div>
     )
-  },
-  primaryHue: 210,
+  }
 }
-
-
