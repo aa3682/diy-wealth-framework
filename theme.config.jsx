@@ -34,7 +34,7 @@ export default {
     toggleButton: true,
   },
   footer: {
-    text: (
+    content: (
       <div style={{ width: '100%', textAlign: 'center', fontSize: '0.9rem', color: '#94a3b8' }}>
         <p style={{ margin: '0 0 0.5rem 0' }}>
           <strong>AlignFlow LLC</strong> © {new Date().getFullYear()}
