@@ -8,6 +8,17 @@ export default {
     link: 'https://github.com/aa3682/diy-wealth-framework',
   },
   docsRepositoryBase: 'https://github.com/aa3682/diy-wealth-framework/tree/main',
+  banner: {
+    key: 'gemini-assistant-banner',
+    text: (
+      <span>
+        ⚡ Gemini-powered planning tools are now live in the Asset Allocation module.
+      </span>
+    )
+  },
+  search: {
+    placeholder: 'Search framework, formulas, or rules...'
+  },
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +38,7 @@ export default {
       </span>
     )
   },
-  primaryHue: 210, 
+  primaryHue: 210,
 }
+
 
