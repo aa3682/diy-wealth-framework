@@ -1,5 +1,6 @@
-import AccountSequencingTool from '../components/AccountSequencingTool'
-import LeadCapture from '../components/LeadCapture'
+import AccountSequencingTool from '../../components/AccountSequencingTool'
+import BackdoorRothSelector from '../../components/BackdoorRothSelector'
+import LeadCapture from '../../components/LeadCapture'
 import { Callout } from 'nextra/components'
 
 # Tax Efficiency
@@ -20,6 +21,17 @@ Fund your accounts in this specific order to maximize tax advantages:
 5. **Taxable Brokerage:** Once all tax-advantaged space is filled, route excess cash to a standard brokerage account.
 
 <AccountSequencingTool />
+
+## High-Income Strategies
+
+### The Backdoor Roth IRA
+If your Modified Adjusted Gross Income (MAGI) exceeds the IRS limits to contribute directly to a Roth IRA, you must use the "Backdoor" method. You make a non-deductible contribution to a Traditional IRA, leave it in cash, and immediately convert it to a Roth IRA.
+
+However, if you have *any* existing pre-tax money in a Traditional, SEP, or SIMPLE IRA, the IRS applies the **Pro-Rata Rule**. You cannot choose to only convert the new after-tax money; the IRS forces you to convert a proportional mix, triggering an unexpected tax bill.
+
+Use this diagnostic to check your Pro-Rata exposure before executing a conversion:
+
+<BackdoorRothSelector />
 
 ### The HSA Receipt-Tracking Strategy
 Turn your HSA into a shadow retirement account by leveraging the IRS loophole that places no time limit on medical reimbursements.
