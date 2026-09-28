@@ -23,7 +23,9 @@ body {
   border-color: #10b981 !important;
 }
 
-/* 3. Glow physics for the lead-capture button */
+/* 3. Glow physics for the lead-capture button. The hover fill lightens
+   rather than darkens: the label is dark (#022c22), so #34d399 keeps it at
+   7.88:1, where the old #059669 fell to 4.02:1, below WCAG AA. */
 .cta-button-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
 }
@@ -31,7 +33,7 @@ body {
 .cta-button-hover:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 0 15px rgba(16, 185, 129, 0.4) !important;
-  background-color: #059669 !important;
+  background-color: #34d399 !important;
 }
 
 /* 4. Custom scrollbar */
