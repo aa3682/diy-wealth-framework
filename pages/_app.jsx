@@ -1,11 +1,16 @@
-import { Outfit } from 'next/font/google'
+import localFont from 'next/font/local'
 import '../styles.css'
 
-// Self-hosted via next/font: no render-blocking request to Google Fonts and
-// no layout shift when the face arrives.
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+// Outfit (variable, SIL OFL: fonts/OFL.txt) is committed in fonts/ rather
+// than fetched from Google Fonts at build time, so a bad response from
+// Google can no longer fail a build. It is the same Latin file next/font
+// downloaded from Google before, so rendering is unchanged, and next/font
+// still self-hosts it with no layout shift. The Latin subset covers every
+// character the site uses.
+const outfit = localFont({
+  src: '../fonts/outfit-latin.woff2',
+  weight: '100 900',
+  style: 'normal',
   display: 'swap',
   variable: '--font-outfit',
 })
