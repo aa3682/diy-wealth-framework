@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
+import CurrentYear from './components/CurrentYear'
 
 const SITE_NAME = 'DIY Wealth Framework'
 const SITE_DESCRIPTION =
@@ -55,7 +56,7 @@ export default {
     content: (
       <div style={{ width: '100%', textAlign: 'center', fontSize: '0.9rem', color: '#94a3b8' }}>
         <p style={{ margin: '0 0 0.5rem 0' }}>
-          <strong>AlignFlow LLC</strong> © {new Date().getFullYear()}
+          <strong>AlignFlow LLC</strong> © <CurrentYear />
         </p>
         <p style={{ margin: 0, fontSize: '0.8rem' }}>
           This framework is an independent educational resource and is not affiliated with the Certified Financial Planner Board of Standards, Inc.
