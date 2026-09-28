@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import NumberField from './ui/NumberField';
+import { useNumberInput } from '../lib/useNumberInput';
 
 export default function WillVsTrustEvaluator() {
-  const [netWorth, setNetWorth] = useState(400000);
+  const netWorth = useNumberInput(400000);
   const [multiState, setMultiState] = useState(false);
   const [staggered, setStaggered] = useState(false);
   const [privacy, setPrivacy] = useState(false);
 
-  // Treat an empty input as 0 for the logic calculations
-  const activeNetWorth = Number(netWorth) || 0;
-  const highNetWorth = activeNetWorth >= 1000000;
+  const highNetWorth = netWorth.value >= 1000000;
   const requiresTrust = highNetWorth || multiState || staggered || privacy;
 
   return (
@@ -26,30 +26,16 @@ export default function WillVsTrustEvaluator() {
         A Last Will goes through probate (public, slow, expensive). A Revocable Living Trust bypasses probate entirely. Select your criteria below to see which structure your wealth architecture requires.
       </p>
 
-      <div style={{ marginBottom: '1.5rem' }}>
-        <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.5rem', color: '#cbd5e1', fontWeight: 'bold' }}>
-          Probate-Exposed Net Worth ($)
-        </label>
-        <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '0.5rem' }}>
-          Include real estate, business equity, and cash. Exclude 401(k)s and IRAs, which pass directly via beneficiaries.
-        </div>
-        <input
-          type="number"
-          step="50000"
-          value={netWorth}
-          onChange={(e) => setNetWorth(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
-          style={{
-            width: '100%',
-            maxWidth: '300px',
-            padding: '0.75rem',
-            borderRadius: '6px',
-            border: '1px solid #475569',
-            backgroundColor: '#1e293b',
-            color: '#f8fafc',
-            fontSize: '1rem'
-          }}
-        />
-      </div>
+      <NumberField
+        id="trust-net-worth"
+        label="Probate-Exposed Net Worth ($)"
+        hint="Include real estate, business equity, and cash. Exclude 401(k)s and IRAs, which pass directly via beneficiaries."
+        step={50000}
+        wrapperStyle={{ marginBottom: '1.5rem' }}
+        labelStyle={{ fontWeight: 'bold' }}
+        inputStyle={{ maxWidth: '300px', padding: '0.75rem' }}
+        {...netWorth.inputProps}
+      />
 
       <div style={{ display: 'grid', gap: '1rem', marginBottom: '1.5rem' }}>
         <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', fontSize: '0.9rem', color: '#cbd5e1', backgroundColor: '#1e293b', padding: '0.75rem', borderRadius: '6px' }}>

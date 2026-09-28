@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import NumberField from './ui/NumberField';
+import { useNumberInput } from '../lib/useNumberInput';
+import { formatUSD } from '../lib/format';
 
 export default function CashFlowCalculator() {
-  const [income, setIncome] = useState(6000);
+  const income = useNumberInput(6000);
 
-  const needs = (income * 0.5).toFixed(0);
-  const wants = (income * 0.3).toFixed(0);
-  const futureYou = (income * 0.2).toFixed(0);
+  const needs = Math.round(income.value * 0.5);
+  const wants = Math.round(income.value * 0.3);
+  const futureYou = Math.round(income.value * 0.2);
 
   return (
     <div style={{
@@ -21,42 +24,30 @@ export default function CashFlowCalculator() {
         Enter your monthly take-home (after-tax) income to view your baseline routing targets:
       </p>
 
-      <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.5rem', color: '#cbd5e1' }}>
-        Monthly Take-Home Pay ($)
-      </label>
-      <input
-        type="number"
-        value={income}
-        onChange={(e) => setIncome(Math.max(0, Number(e.target.value)))}
-        style={{
-          width: '100%',
-          maxWidth: '280px',
-          padding: '0.5rem 0.75rem',
-          borderRadius: '6px',
-          border: '1px solid #475569',
-          backgroundColor: '#1e293b',
-          color: '#f8fafc',
-          fontSize: '1rem',
-          marginBottom: '1.25rem'
-        }}
+      <NumberField
+        id="cashflow-income"
+        label="Monthly Take-Home Pay ($)"
+        step={100}
+        inputStyle={{ maxWidth: '280px', marginBottom: '1.25rem' }}
+        {...income.inputProps}
       />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
         <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '6px', borderLeft: '4px solid #38bdf8' }}>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Needs (50%)</div>
-          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>${Number(needs).toLocaleString()}</div>
+          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>{formatUSD(needs)}</div>
           <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Housing, food, fixed bills</div>
         </div>
 
         <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '6px', borderLeft: '4px solid #a855f7' }}>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Wants (30%)</div>
-          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>${Number(wants).toLocaleString()}</div>
+          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>{formatUSD(wants)}</div>
           <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Dining, travel, leisure</div>
         </div>
 
         <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '6px', borderLeft: '4px solid #22c55e' }}>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Future You (20%)</div>
-          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>${Number(futureYou).toLocaleString()}</div>
+          <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>{formatUSD(futureYou)}</div>
           <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Investing, debt payoff</div>
         </div>
       </div>
