@@ -27,8 +27,9 @@ export default function BondTentModeler() {
           {...monthlyBurn.inputProps}
         />
         <div>
-          <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.5rem', color: '#cbd5e1', fontWeight: 'bold' }}>Years of Bear Market Protection</label>
+          <label htmlFor="bondtent-years" style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.5rem', color: '#cbd5e1', fontWeight: 'bold' }}>Years of Bear Market Protection</label>
           <select
+            id="bondtent-years"
             value={yearsProtection} onChange={(e) => setYearsProtection(Number(e.target.value))}
             style={{ width: '100%', padding: '0.75rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc', fontSize: '1rem' }}
           >
@@ -41,7 +42,7 @@ export default function BondTentModeler() {
         </div>
       </div>
 
-      <div style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: '#022c22', borderLeft: '4px solid #10b981', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <div aria-live="polite" style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: '#022c22', borderLeft: '4px solid #10b981', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <div style={{ fontSize: '0.85rem', color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Required Bond Tent Buffer</div>
           <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#f8fafc' }}>{formatUSD(tentTarget)}</div>

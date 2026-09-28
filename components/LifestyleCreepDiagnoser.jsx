@@ -65,7 +65,7 @@ export default function LifestyleCreepDiagnoser() {
         </div>
       </div>
 
-      <div style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: statusBg, borderLeft: `4px solid ${statusColor}` }}>
+      <div aria-live="polite" style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: statusBg, borderLeft: `4px solid ${statusColor}` }}>
         <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: statusColor, marginBottom: '0.5rem' }}>{statusText}</div>
         <p style={{ margin: 0, fontSize: '0.95rem', color: '#f8fafc', lineHeight: '1.5' }}>{advice}</p>
       </div>

@@ -48,7 +48,7 @@ export default function BackdoorRothSelector() {
         />
       </div>
 
-      <div style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: hasProRataTrap ? '#450a0a' : '#022c22', borderLeft: hasProRataTrap ? '4px solid #ef4444' : '4px solid #10b981' }}>
+      <div aria-live="polite" style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: hasProRataTrap ? '#450a0a' : '#022c22', borderLeft: hasProRataTrap ? '4px solid #ef4444' : '4px solid #10b981' }}>
         <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: hasProRataTrap ? '#fca5a5' : '#6ee7b7', marginBottom: '0.5rem' }}>
           {hasProRataTrap ? '⚠️ Pro-Rata Trap Detected' : '✅ Clear to Convert'}
         </div>

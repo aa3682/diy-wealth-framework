@@ -32,7 +32,7 @@ export default function CashFlowCalculator() {
         {...income.inputProps}
       />
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
+      <div aria-live="polite" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
         <div style={{ background: '#1e293b', padding: '0.75rem', borderRadius: '6px', borderLeft: '4px solid #38bdf8' }}>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Needs (50%)</div>
           <div style={{ fontSize: '1.25rem', fontWeight: 600 }}>{formatUSD(needs)}</div>

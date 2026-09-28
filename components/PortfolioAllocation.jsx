@@ -40,7 +40,7 @@ export default function PortfolioAllocation() {
         inputStyle={{ maxWidth: '280px', marginBottom: '1.25rem', fontSize: undefined }}
         {...capital.inputProps}
       />
-      <div style={{ display: 'grid', gap: '0.75rem' }}>
+      <div aria-live="polite" style={{ display: 'grid', gap: '0.75rem' }}>
         {allocations[model].map(asset => (
           <div key={asset.ticker} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', background: '#1e293b', borderRadius: '6px', borderLeft: '4px solid #38bdf8' }}>
             <div><strong>{asset.ticker}</strong> <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>({asset.name})</span></div>

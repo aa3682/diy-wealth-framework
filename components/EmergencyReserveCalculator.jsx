@@ -41,15 +41,15 @@ export default function EmergencyReserveCalculator() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <label style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Income Source</label>
-          <select value={incomeType} onChange={(e) => setIncomeType(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
+          <label htmlFor="reserve-income-type" style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Income Source</label>
+          <select id="reserve-income-type" value={incomeType} onChange={(e) => setIncomeType(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
             <option value="w2">W-2 Employee (Stable)</option>
             <option value="freelance">Freelancer / Contractor</option>
           </select>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <label style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Household Earners</label>
-          <select value={earners} onChange={(e) => setEarners(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
+          <label htmlFor="reserve-earners" style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Household Earners</label>
+          <select id="reserve-earners" value={earners} onChange={(e) => setEarners(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
             <option value="dual">Dual Income (Split Risk)</option>
             <option value="single">Single Income</option>
           </select>
@@ -67,7 +67,7 @@ export default function EmergencyReserveCalculator() {
         </label>
       </div>
 
-      <div style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: '#022c22', borderLeft: '4px solid #10b981', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <div aria-live="polite" style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: '#022c22', borderLeft: '4px solid #10b981', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <div style={{ fontSize: '0.85rem', color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Target Reserve: {targetMonths} Months</div>
           <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#f8fafc' }}>{formatUSD(targetDollarAmount)}</div>

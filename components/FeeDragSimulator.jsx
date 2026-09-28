@@ -59,7 +59,7 @@ export default function FeeDragSimulator() {
         </div>
       </div>
 
-      <div style={{ padding: '1.25rem', backgroundColor: '#450a0a', borderRadius: '6px', textAlign: 'center', border: '1px solid #7f1d1d' }}>
+      <div aria-live="polite" style={{ padding: '1.25rem', backgroundColor: '#450a0a', borderRadius: '6px', textAlign: 'center', border: '1px solid #7f1d1d' }}>
         <div style={{ fontSize: '0.9rem', color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Wealth Destroyed by 1% Fee</div>
         <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ef4444', marginBottom: '0.5rem' }}>{formatUSD(Math.round(wealthLost))}</div>
         <div style={{ fontSize: '0.9rem', color: '#fca5a5' }}>You surrender <strong>{formatPercent(percentageLost)}</strong> of your total potential terminal wealth to fees.</div>

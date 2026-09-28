@@ -78,7 +78,7 @@ export default function WillVsTrustEvaluator() {
         </label>
       </div>
 
-      <div style={{
+      <div aria-live="polite" style={{
         padding: '1.25rem',
         borderRadius: '6px',
         backgroundColor: requiresTrust ? '#022c22' : '#1e293b',

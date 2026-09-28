@@ -62,7 +62,7 @@ export default function AccountSequencingTool() {
           </select>
         </div>
       </div>
-      <div style={{ display: 'grid', gap: '0.5rem' }}>
+      <div aria-live="polite" style={{ display: 'grid', gap: '0.5rem' }}>
         <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>1. 401k Match: <strong style={{ color: '#22c55e' }}>{formatUSD(step1Match)}</strong></div>
         <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>2. HSA: <strong style={{ color: '#22c55e' }}>{formatUSD(step2HSA)}</strong></div>
         <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>3. Roth IRA: <strong style={{ color: '#22c55e' }}>{formatUSD(step3Roth)}</strong></div>

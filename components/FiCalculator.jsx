@@ -24,7 +24,7 @@ export default function FiCalculator() {
         {...annualExpenses.inputProps}
       />
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
+      <div aria-live="polite" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
         <div style={{ background: '#1e293b', padding: '1rem', borderRadius: '6px', borderLeft: '4px solid #38bdf8' }}>
           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Target Portfolio Size (25x)</div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#38bdf8' }}>{formatUSD(fiNumber)}</div>
