@@ -15,6 +15,7 @@ const outfit = localFont({
   variable: '--font-outfit',
 })
 
+/** @param {import('next/app').AppProps} props */
 export default function App({ Component, pageProps }) {
   return (
     <>

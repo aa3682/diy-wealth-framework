@@ -3,6 +3,7 @@ import { ADVISOR_AUM_FEE, DIY_EXPENSE_RATIO, compareFeeDrag, futureValue } from 
 
 // Independent check: grow the balance one month at a time, adding each
 // contribution at the end of the month.
+/** @param {{ initial: number, monthly: number, years: number, annualRate: number }} inputs */
 function simulate({ initial, monthly, years, annualRate }) {
   const r = annualRate / 100 / 12
   let balance = initial

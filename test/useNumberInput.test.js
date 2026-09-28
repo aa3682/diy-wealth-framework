@@ -3,10 +3,17 @@ import { describe, expect, it } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
 import { useNumberInput } from '../lib/useNumberInput'
 
+/** @typedef {{ current: ReturnType<typeof useNumberInput> }} HookResult */
+
+/**
+ * @param {HookResult} result
+ * @param {string} text
+ */
 function type(result, text) {
   act(() => result.current.inputProps.onChange({ target: { value: text } }))
 }
 
+/** @param {HookResult} result */
 function blur(result) {
   act(() => result.current.inputProps.onBlur())
 }

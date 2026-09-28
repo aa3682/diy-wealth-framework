@@ -14,8 +14,14 @@ export default function DebtAvalancheSorter() {
   const [debts, setDebts] = useState(SAMPLE_DEBTS);
   const nextId = useRef(SAMPLE_DEBTS.length + 1);
 
+  /**
+   * @param {number} id
+   * @param {'name' | 'balance' | 'rate'} key
+   * @param {string} value
+   */
   const update = (id, key, value) =>
     setDebts((list) => list.map((d) => (d.id === id ? { ...d, [key]: value } : d)));
+  /** @param {number} id */
   const remove = (id) => setDebts((list) => list.filter((d) => d.id !== id));
   const add = () => setDebts((list) => [...list, { id: nextId.current++, name: '', balance: '', rate: '' }]);
 
