@@ -2,14 +2,16 @@
    Components compose these classes instead of carrying inline styles. */
 
 .tool {
-  --tool-bg: #0f172a;
-  --tool-surface: #1e293b;
+  /* The card sits one step lighter than the #0f172a page; inputs, rows and
+     tiles are inset one step darker. */
+  --tool-bg: #1e293b;
+  --tool-surface: #0f172a;
   --tool-border: #334155;
   --tool-control-border: #475569;
   --tool-text: #f8fafc;
   --tool-text-soft: #cbd5e1;
   --tool-text-muted: #94a3b8;
-  --tool-text-faint: #64748b;
+  --tool-text-faint: #8492a6; /* 4.6:1 on --tool-bg, 5.6:1 on --tool-surface */
 
   --tone-accent: #10b981;
   --tone-accent-bg: #022c22;
