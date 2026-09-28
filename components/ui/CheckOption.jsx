@@ -4,6 +4,13 @@ import styles from './tool.module.css'
 /**
  * A checkbox wrapped in its label. `card` gives it a surface background.
  * Pass `detail` for a secondary line under the main text.
+ *
+ * @param {object} props
+ * @param {boolean} props.checked
+ * @param {React.ChangeEventHandler<HTMLInputElement>} props.onChange
+ * @param {boolean} [props.card]
+ * @param {React.ReactNode} [props.detail]
+ * @param {React.ReactNode} props.children
  */
 export default function CheckOption({ checked, onChange, card = false, detail = null, children }) {
   return (

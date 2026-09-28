@@ -4,7 +4,8 @@ import styles from './ui/tool.module.css';
 import { ESTATE_ITEMS, estateScore } from '../lib/estateAudit';
 
 export default function EstateAuditChecklist() {
-  const [checks, setChecks] = useState({});
+  const [checks, setChecks] = useState(/** @type {Record<string, boolean>} */ ({}));
+  /** @param {string} id */
   const toggle = (id) => setChecks((prev) => ({ ...prev, [id]: !prev[id] }));
   const { score, total, complete } = estateScore(checks);
 
