@@ -2,8 +2,7 @@ import React, { useRef, useState } from 'react';
 import ToolCard from './ui/ToolCard';
 import styles from './ui/tool.module.css';
 import { formatUSD } from '../lib/format';
-
-const EMERGENCY_RATE = 6;
+import { EMERGENCY_RATE, rankDebts } from '../lib/debtAvalanche';
 
 const SAMPLE_DEBTS = [
   { id: 1, name: 'Credit Card', balance: '5400', rate: '24.99' },
@@ -20,11 +19,7 @@ export default function DebtAvalancheSorter() {
   const remove = (id) => setDebts((list) => list.filter((d) => d.id !== id));
   const add = () => setDebts((list) => [...list, { id: nextId.current++, name: '', balance: '', rate: '' }]);
 
-  const ranked = debts
-    .map((d) => ({ ...d, balanceNum: Math.max(0, Number(d.balance) || 0), rateNum: Math.max(0, Number(d.rate) || 0) }))
-    .filter((d) => d.balanceNum > 0)
-    .sort((a, b) => b.rateNum - a.rateNum);
-  const total = ranked.reduce((sum, d) => sum + d.balanceNum, 0);
+  const { ranked, total, aboveEmergencyLine } = rankDebts(debts);
 
   return (
     <ToolCard
@@ -100,7 +95,7 @@ export default function DebtAvalancheSorter() {
         )}
         {ranked.length > 0 && (
           <div className={styles.total}>
-            <span>{ranked.filter((d) => d.rateNum > EMERGENCY_RATE).length} above the {EMERGENCY_RATE}% emergency line</span>
+            <span>{aboveEmergencyLine} above the {EMERGENCY_RATE}% emergency line</span>
             <span>Total {formatUSD(total)}</span>
           </div>
         )}

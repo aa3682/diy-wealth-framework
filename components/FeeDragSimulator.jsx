@@ -6,9 +6,7 @@ import ResultPanel from './ui/ResultPanel';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD, formatPercent } from '../lib/format';
-
-const DIY_EXPENSE_RATIO = 0.03;
-const ADVISOR_AUM_FEE = 1.00;
+import { DIY_EXPENSE_RATIO, compareFeeDrag } from '../lib/feeDrag';
 
 export default function FeeDragSimulator() {
   const initialInvestment = useNumberInput(50000);
@@ -16,21 +14,12 @@ export default function FeeDragSimulator() {
   const years = useNumberInput(30, { min: 1, max: 100 });
   const grossReturn = useNumberInput(8, { min: 0, max: 50 });
 
-  const calculateFV = (annualRate) => {
-    const r = annualRate / 100 / 12;
-    const n = years.value * 12;
-    if (r === 0) return initialInvestment.value + (monthlyContribution.value * n);
-
-    const compoundPrincipal = initialInvestment.value * Math.pow(1 + r, n);
-    const compoundContributions = monthlyContribution.value * ((Math.pow(1 + r, n) - 1) / r);
-    return compoundPrincipal + compoundContributions;
-  };
-
-  const fvDIY = calculateFV(grossReturn.value - DIY_EXPENSE_RATIO);
-  const fvAUM = calculateFV(grossReturn.value - ADVISOR_AUM_FEE);
-
-  const wealthLost = fvDIY - fvAUM;
-  const percentageLost = fvDIY > 0 ? (wealthLost / fvDIY) * 100 : 0;
+  const { fvDIY, fvAUM, wealthLost, percentageLost } = compareFeeDrag({
+    initial: initialInvestment.value,
+    monthly: monthlyContribution.value,
+    years: years.value,
+    grossReturn: grossReturn.value,
+  });
 
   return (
     <ToolCard

@@ -7,6 +7,7 @@ import ResultPanel from './ui/ResultPanel';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
+import { emergencyReserve } from '../lib/emergencyReserve';
 
 export default function EmergencyReserveCalculator() {
   const monthlyExpenses = useNumberInput(4000);
@@ -15,17 +16,13 @@ export default function EmergencyReserveCalculator() {
   const [isHomeowner, setIsHomeowner] = useState(false);
   const [hasDependents, setHasDependents] = useState(false);
 
-  let targetMonths = 3;
-  if (incomeType === 'freelance') targetMonths = 6;
-  else if (earners === 'single') targetMonths += 1;
-
-  if (isHomeowner) targetMonths += 1;
-  if (hasDependents) targetMonths += 1;
-
-  const maxMonths = incomeType === 'freelance' ? 9 : 6;
-  targetMonths = Math.min(targetMonths, maxMonths);
-
-  const targetDollarAmount = targetMonths * monthlyExpenses.value;
+  const { months: targetMonths, amount: targetDollarAmount } = emergencyReserve({
+    monthlyExpenses: monthlyExpenses.value,
+    incomeType,
+    earners,
+    isHomeowner,
+    hasDependents,
+  });
 
   return (
     <ToolCard

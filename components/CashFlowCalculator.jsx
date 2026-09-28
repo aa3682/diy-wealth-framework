@@ -5,13 +5,12 @@ import Tile from './ui/Tile';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
+import { splitCashFlow } from '../lib/cashFlow';
 
 export default function CashFlowCalculator() {
   const income = useNumberInput(6000);
 
-  const needs = Math.round(income.value * 0.5);
-  const wants = Math.round(income.value * 0.3);
-  const futureYou = Math.round(income.value * 0.2);
+  const { needs, wants, futureYou } = splitCashFlow(income.value);
 
   return (
     <ToolCard
