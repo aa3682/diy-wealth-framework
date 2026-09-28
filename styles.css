@@ -102,3 +102,23 @@ body {
 .dark footer {
   background-color: #0b1120 !important;
 }
+
+/* 7. Slate instead of Nextra's neutral greys. Nextra's dark mode draws card
+   borders, dividers and the home-page card hover fill in neutral greys
+   (#262626, #171717) that read as black against the slate page. */
+.dark .nextra-card {
+  border-color: #334155 !important; /* the calculator card border */
+}
+.dark .nextra-card:hover,
+.dark .nextra-card:active {
+  background-color: #1e293b !important; /* the calculator card fill */
+  border-color: #10b981 !important; /* keeps section 2's hover accent */
+}
+/* Dividers: hr rules, the sidebar and TOC footers, the previous/next
+   links and the page footer. Nextra marks them with dark:_border-neutral-800. */
+.dark [class*="dark:_border-neutral-800"]:not(.nextra-card),
+.dark .nextra-sidebar-footer,
+.dark .nextra-toc-footer,
+.dark footer > div:first-child {
+  border-color: #1e293b !important;
+}
