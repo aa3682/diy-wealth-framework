@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import React from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { cleanup, render } from '@testing-library/react'
@@ -6,29 +8,33 @@ import LeadCapture from '../components/LeadCapture'
 
 afterEach(cleanup)
 
+/** @param {HTMLElement} container */
+const hrefs = (container) => [...container.querySelectorAll('a')].map((a) => a.getAttribute('href'))
+
 describe('LeadCapture', () => {
-  it('renders nothing while the links are placeholders', () => {
+  it('offers both templates as downloads and hides the booking line while it is a placeholder', () => {
     const { container } = render(<LeadCapture />)
-    expect(container.innerHTML).toBe('')
-  })
-
-  it('renders nothing while only the booking link is real', () => {
-    const { container } = render(<LeadCapture bookingUrl="https://example.com/book" />)
-    expect(container.innerHTML).toBe('')
-  })
-
-  it('shows the templates button without the booking line once the templates link is real', () => {
-    const { container } = render(<LeadCapture templatesUrl="https://example.com/templates" />)
-    const links = [...container.querySelectorAll('a')].map((a) => a.getAttribute('href'))
-    expect(links).toEqual(['https://example.com/templates'])
+    expect(hrefs(container)).toEqual([
+      '/templates/cash-flow-tracker.xlsx',
+      '/templates/net-worth-dashboard.xlsx',
+    ])
+    for (const a of container.querySelectorAll('a')) expect(a.hasAttribute('download')).toBe(true)
     expect(container.textContent).not.toContain('Book a diagnostic call')
   })
 
-  it('shows both links once both are real', () => {
-    const { container } = render(
-      <LeadCapture templatesUrl="https://example.com/templates" bookingUrl="https://example.com/book" />
-    )
-    const links = [...container.querySelectorAll('a')].map((a) => a.getAttribute('href'))
-    expect(links).toEqual(['https://example.com/templates', 'https://example.com/book'])
+  it('links to template files that exist in public/', () => {
+    const { container } = render(<LeadCapture />)
+    for (const href of hrefs(container)) {
+      expect(existsSync(join(process.cwd(), 'public', String(href))), String(href)).toBe(true)
+    }
+  })
+
+  it('shows the booking line once the booking link is real', () => {
+    const { container } = render(<LeadCapture bookingUrl="https://example.com/book" />)
+    expect(hrefs(container)).toEqual([
+      '/templates/cash-flow-tracker.xlsx',
+      '/templates/net-worth-dashboard.xlsx',
+      'https://example.com/book',
+    ])
   })
 })
