@@ -6,7 +6,9 @@ export default function WillVsTrustEvaluator() {
   const [staggered, setStaggered] = useState(false);
   const [privacy, setPrivacy] = useState(false);
 
-  const highNetWorth = netWorth >= 1000000;
+  // Treat an empty input as 0 for the logic calculations
+  const activeNetWorth = Number(netWorth) || 0;
+  const highNetWorth = activeNetWorth >= 1000000;
   const requiresTrust = highNetWorth || multiState || staggered || privacy;
 
   return (
@@ -35,7 +37,7 @@ export default function WillVsTrustEvaluator() {
           type="number"
           step="50000"
           value={netWorth}
-          onChange={(e) => setNetWorth(Math.max(0, Number(e.target.value)))}
+          onChange={(e) => setNetWorth(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
           style={{
             width: '100%',
             maxWidth: '300px',
