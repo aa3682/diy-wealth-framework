@@ -1,60 +1,72 @@
 import React, { useState } from 'react';
+import ToolCard from './ui/ToolCard';
+import NumberField from './ui/NumberField';
+import SelectField from './ui/SelectField';
+import styles from './ui/tool.module.css';
+import { useNumberInput } from '../lib/useNumberInput';
+import { formatUSD } from '../lib/format';
+import { CURRENT_TAX_YEAR, getLimits } from '../lib/limits';
+
+const LIMITS = getLimits(CURRENT_TAX_YEAR);
 
 export default function AccountSequencingTool() {
-  const [income, setIncome] = useState(100000);
-  const [matchPercent, setMatchPercent] = useState(4);
-  const [hasHDHP, setHasHDHP] = useState(true);
-  const [investableCash, setInvestableCash] = useState(20000);
+  const income = useNumberInput(100000);
+  const matchPercent = useNumberInput(4, { min: 0, max: 100 });
+  const [hsaCoverage, setHsaCoverage] = useState('self');
+  const investableCash = useNumberInput(20000);
 
-  const activeIncome = Number(income) || 0;
-  const activeMatch = Number(matchPercent) || 0;
-  const activeCash = Number(investableCash) || 0;
+  const hsaLimit =
+    hsaCoverage === 'self' ? LIMITS.hsaSelfOnly :
+    hsaCoverage === 'family' ? LIMITS.hsaFamily :
+    0;
 
-  let remaining = activeCash;
-  
-  const step1Match = Math.min(remaining, activeIncome * (activeMatch / 100));
+  let remaining = investableCash.value;
+
+  const step1Match = Math.min(remaining, income.value * (matchPercent.value / 100));
   remaining -= step1Match;
 
-  const step2HSA = hasHDHP ? Math.min(remaining, 4150) : 0;
+  const step2HSA = Math.min(remaining, hsaLimit);
   remaining -= step2HSA;
 
-  const step3Roth = Math.min(remaining, 7000);
+  const step3Roth = Math.min(remaining, LIMITS.ira);
   remaining -= step3Roth;
 
-  const step4Max401k = Math.min(remaining, 23000 - step1Match);
+  const step4Max401k = Math.min(remaining, Math.max(0, LIMITS.employee401k - step1Match));
   remaining -= step4Max401k;
 
   const step5Taxable = remaining;
 
+  const steps = [
+    ['1. 401k Match', step1Match],
+    ['2. HSA', step2HSA],
+    ['3. Roth IRA', step3Roth],
+    ['4. 401k Max', step4Max401k],
+    ['5. Taxable Brokerage', step5Taxable],
+  ];
+
   return (
-    <div style={{ border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem', margin: '1.5rem 0', backgroundColor: '#0f172a', color: '#f8fafc' }}>
-      <h3 style={{ marginTop: 0, fontSize: '1.25rem' }}>Waterfall Sequencer</h3>
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-        <div>
-          <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Annual Income ($)</label>
-          <input type="number" value={income} onChange={(e) => setIncome(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
-        </div>
-        <div>
-          <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>401k Match (%)</label>
-          <input type="number" value={matchPercent} onChange={(e) => setMatchPercent(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', width: '80px', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
-        </div>
-        <div>
-          <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Cash to Invest/Yr ($)</label>
-          <input type="number" value={investableCash} onChange={(e) => setInvestableCash(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
-        </div>
-        <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
-            <input type="checkbox" checked={hasHDHP} onChange={(e) => setHasHDHP(e.target.checked)} /> HDHP Eligible
-          </label>
-        </div>
+    <ToolCard title="Waterfall Sequencer">
+      <p className={styles.note}>
+        Using {CURRENT_TAX_YEAR} IRS limits: 401(k) {formatUSD(LIMITS.employee401k)} · IRA {formatUSD(LIMITS.ira)} · HSA {formatUSD(LIMITS.hsaSelfOnly)} self-only / {formatUSD(LIMITS.hsaFamily)} family. Catch-up contributions for age 50+ are not included.
+      </p>
+      <div className={styles.grid} style={{ '--min': '160px' }}>
+        <NumberField id="seq-income" label="Annual Income ($)" step={1000} {...income.inputProps} />
+        <NumberField id="seq-match" label="401k Match (%)" step={0.5} {...matchPercent.inputProps} />
+        <NumberField id="seq-cash" label="Cash to Invest/Yr ($)" step={1000} {...investableCash.inputProps} />
+        <SelectField id="seq-hsa" label="HDHP / HSA Coverage" value={hsaCoverage} onChange={(e) => setHsaCoverage(e.target.value)}>
+          <option value="self">Self-only</option>
+          <option value="family">Family</option>
+          <option value="none">Not eligible</option>
+        </SelectField>
       </div>
-      <div style={{ display: 'grid', gap: '0.5rem' }}>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>1. 401k Match: <strong style={{ color: '#22c55e' }}>${step1Match.toLocaleString()}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>2. HSA: <strong style={{ color: '#22c55e' }}>${step2HSA.toLocaleString()}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>3. Roth IRA: <strong style={{ color: '#22c55e' }}>${step3Roth.toLocaleString()}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>4. 401k Max: <strong style={{ color: '#22c55e' }}>${step4Max401k.toLocaleString()}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>5. Taxable Brokerage: <strong style={{ color: '#22c55e' }}>${step5Taxable.toLocaleString()}</strong></div>
+      <div className={styles.stack} aria-live="polite">
+        {steps.map(([label, amount]) => (
+          <div key={label} className={styles.listRow}>
+            <span>{label}</span>
+            <strong className={styles.emphasis}>{formatUSD(amount)}</strong>
+          </div>
+        ))}
       </div>
-    </div>
+    </ToolCard>
   );
 }
