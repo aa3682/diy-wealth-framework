@@ -5,5 +5,6 @@ export default {
   "03-wealth-accumulation": "3. Wealth Accumulation",
   "04-tax-efficiency": "4. Tax Efficiency",
   "05-retirement-runway": "5. Retirement Runway",
-  "06-legacy-mechanics": "6. Legacy Mechanics"
+  "06-legacy-mechanics": "6. Legacy Mechanics",
+  "07-next-steps": "7. Next Steps"
 }
