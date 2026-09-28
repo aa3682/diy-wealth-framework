@@ -2,9 +2,10 @@ import React from 'react';
 import NumberField from './ui/NumberField';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD, formatPercent } from '../lib/format';
+import { getLimits } from '../lib/limits';
 
 export default function BackdoorRothSelector() {
-  const contribution = useNumberInput(7000);
+  const contribution = useNumberInput(getLimits().ira);
   const existingBalance = useNumberInput(0);
 
   const activeContribution = contribution.value;
