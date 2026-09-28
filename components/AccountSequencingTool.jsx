@@ -6,6 +6,7 @@ import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
 import { CURRENT_TAX_YEAR, getLimits } from '../lib/limits';
+import { hsaLimitFor, sequenceContributions } from '../lib/sequencing';
 
 const LIMITS = getLimits(CURRENT_TAX_YEAR);
 
@@ -15,33 +16,20 @@ export default function AccountSequencingTool() {
   const [hsaCoverage, setHsaCoverage] = useState('self');
   const investableCash = useNumberInput(20000);
 
-  const hsaLimit =
-    hsaCoverage === 'self' ? LIMITS.hsaSelfOnly :
-    hsaCoverage === 'family' ? LIMITS.hsaFamily :
-    0;
-
-  let remaining = investableCash.value;
-
-  const step1Match = Math.min(remaining, income.value * (matchPercent.value / 100));
-  remaining -= step1Match;
-
-  const step2HSA = Math.min(remaining, hsaLimit);
-  remaining -= step2HSA;
-
-  const step3Roth = Math.min(remaining, LIMITS.ira);
-  remaining -= step3Roth;
-
-  const step4Max401k = Math.min(remaining, Math.max(0, LIMITS.employee401k - step1Match));
-  remaining -= step4Max401k;
-
-  const step5Taxable = remaining;
+  const { match401k, hsa, rothIra, max401k, taxable } = sequenceContributions({
+    income: income.value,
+    matchPercent: matchPercent.value,
+    investableCash: investableCash.value,
+    hsaLimit: hsaLimitFor(hsaCoverage, LIMITS),
+    limits: LIMITS,
+  });
 
   const steps = [
-    ['1. 401k Match', step1Match],
-    ['2. HSA', step2HSA],
-    ['3. Roth IRA', step3Roth],
-    ['4. 401k Max', step4Max401k],
-    ['5. Taxable Brokerage', step5Taxable],
+    ['1. 401k Match', match401k],
+    ['2. HSA', hsa],
+    ['3. Roth IRA', rothIra],
+    ['4. 401k Max', max401k],
+    ['5. Taxable Brokerage', taxable],
   ];
 
   return (

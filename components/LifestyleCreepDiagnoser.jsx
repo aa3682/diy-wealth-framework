@@ -4,7 +4,7 @@ import NumberField from './ui/NumberField';
 import ResultPanel from './ui/ResultPanel';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
-import { formatPercent } from '../lib/format';
+import { diagnoseRaiseCapture } from '../lib/raiseCapture';
 
 export default function LifestyleCreepDiagnoser() {
   const pastIncome = useNumberInput(100000);
@@ -12,31 +12,12 @@ export default function LifestyleCreepDiagnoser() {
   const pastSavings = useNumberInput(15000);
   const currentSavings = useNumberInput(18000);
 
-  const incomeDelta = currentIncome.value - pastIncome.value;
-  const savingsDelta = currentSavings.value - pastSavings.value;
-
-  let captureRate = 0;
-  if (incomeDelta > 0) {
-    captureRate = (savingsDelta / incomeDelta) * 100;
-  }
-
-  let tone = 'danger';
-  let statusText = '⚠️ Severe Lifestyle Creep';
-  let advice = `You captured only ${formatPercent(captureRate)} of your income increase. You are spending almost all of your new money. You urgently need an intermediate Holding Account to trap raises before they hit your checking account.`;
-
-  if (incomeDelta <= 0) {
-    tone = 'neutral';
-    statusText = 'Income Stagnant / Decreased';
-    advice = 'Your income has not increased during this period. Focus on increasing your earning power or reducing baseline expenses.';
-  } else if (captureRate >= 50) {
-    tone = 'accent';
-    statusText = '✅ Excellent Wealth Capture';
-    advice = `You captured ${formatPercent(captureRate)} of your new income. Your cash flow systems are highly optimized and successfully resisting lifestyle inflation.`;
-  } else if (captureRate >= 20) {
-    tone = 'warn';
-    statusText = '⚠️ Moderate Creep';
-    advice = `You captured ${formatPercent(captureRate)} of your raise. You are hitting the baseline 20% target, but your lifestyle is inflating noticeably. Consider routing your next raise entirely to investments.`;
-  }
+  const { tone, statusText, advice } = diagnoseRaiseCapture({
+    pastIncome: pastIncome.value,
+    currentIncome: currentIncome.value,
+    pastSavings: pastSavings.value,
+    currentSavings: currentSavings.value,
+  });
 
   return (
     <ToolCard
