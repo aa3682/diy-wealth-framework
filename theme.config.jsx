@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useConfig } from 'nextra-theme-docs'
 import CurrentYear from './components/CurrentYear'
+import { absoluteUrl } from './lib/site'
 
 const SITE_NAME = 'DIY Wealth Framework'
 const SITE_DESCRIPTION =
@@ -14,16 +15,20 @@ const themeConfig = {
   ),
   faviconGlyph: '🛡️',
   head: function Head() {
-    const { asPath } = useRouter()
+    const { asPath, pathname } = useRouter()
     const { frontMatter, title } = useConfig()
     const isHome = asPath === '/'
+    const isErrorPage = pathname === '/404' || pathname === '/500'
+    const url = absoluteUrl(asPath)
     const pageTitle = isHome || !title ? SITE_NAME : `${title} – ${SITE_NAME}`
     const description = frontMatter.description || SITE_DESCRIPTION
     return (
       <>
         <title>{pageTitle}</title>
         <meta name="description" content={description} />
+        {!isErrorPage && <link rel="canonical" href={url} />}
         <meta property="og:type" content="website" />
+        {!isErrorPage && <meta property="og:url" content={url} />}
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
