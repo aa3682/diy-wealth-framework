@@ -6,7 +6,7 @@ import styles from './tool.module.css'
  * The label is associated with the input via id/htmlFor so assistive
  * technology announces it and clicking the label focuses the field.
  */
-export default function NumberField({ id, label, hint, step, spaced = false, ...inputProps }) {
+export default function NumberField({ id, label, hint = null, step, spaced = false, ...inputProps }) {
   const autoId = useId()
   const fieldId = id || autoId
   return (
