@@ -6,7 +6,7 @@ const SITE_NAME = 'DIY Wealth Framework'
 const SITE_DESCRIPTION =
   'An open-source playbook and interactive calculators for self-directed investors: financial defense, cash flow systems, wealth accumulation, tax efficiency, retirement runway, and legacy mechanics.'
 
-export default {
+const themeConfig = {
   logo: (
     <span style={{ fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-0.02em' }}>
       DIY Wealth <span style={{ color: '#10b981' }}>Framework</span>
@@ -65,3 +65,5 @@ export default {
     ),
   },
 }
+
+export default themeConfig
