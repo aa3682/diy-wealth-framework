@@ -6,9 +6,13 @@ export default function AccountSequencingTool() {
   const [hasHDHP, setHasHDHP] = useState(true);
   const [investableCash, setInvestableCash] = useState(20000);
 
-  let remaining = investableCash;
+  const activeIncome = Number(income) || 0;
+  const activeMatch = Number(matchPercent) || 0;
+  const activeCash = Number(investableCash) || 0;
+
+  let remaining = activeCash;
   
-  const step1Match = Math.min(remaining, income * (matchPercent / 100));
+  const step1Match = Math.min(remaining, activeIncome * (activeMatch / 100));
   remaining -= step1Match;
 
   const step2HSA = hasHDHP ? Math.min(remaining, 4150) : 0;
@@ -28,15 +32,15 @@ export default function AccountSequencingTool() {
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
         <div>
           <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Annual Income ($)</label>
-          <input type="number" value={income} onChange={(e) => setIncome(Number(e.target.value))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
+          <input type="number" value={income} onChange={(e) => setIncome(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
         </div>
         <div>
           <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>401k Match (%)</label>
-          <input type="number" value={matchPercent} onChange={(e) => setMatchPercent(Number(e.target.value))} style={{ display: 'block', padding: '0.4rem', width: '80px', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
+          <input type="number" value={matchPercent} onChange={(e) => setMatchPercent(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', width: '80px', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
         </div>
         <div>
           <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Cash to Invest/Yr ($)</label>
-          <input type="number" value={investableCash} onChange={(e) => setInvestableCash(Number(e.target.value))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
+          <input type="number" value={investableCash} onChange={(e) => setInvestableCash(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))} style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }} />
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-end' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
