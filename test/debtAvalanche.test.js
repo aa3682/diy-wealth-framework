@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { EMERGENCY_RATE, rankDebts } from '../lib/debtAvalanche'
 
+/** @type {(id: number, balance: string, rate: string, name?: string) => import('../lib/debtAvalanche').Debt} */
 const debt = (id, balance, rate, name = `Debt ${id}`) => ({ id, name, balance, rate })
 
 describe('rankDebts', () => {

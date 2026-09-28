@@ -15,6 +15,7 @@ function run(overrides = {}) {
   })
 }
 
+/** @param {ReturnType<typeof sequenceContributions>} result */
 function total(result) {
   return result.match401k + result.hsa + result.rothIra + result.max401k + result.taxable
 }

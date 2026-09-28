@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { CONTRIBUTION_LIMITS, CURRENT_TAX_YEAR, getLimits } from '../lib/limits'
 
+/** @type {(keyof import('../lib/limits').Limits)[]} */
 const FIELDS = ['employee401k', 'catchUp401k', 'ira', 'catchUpIra', 'hsaSelfOnly', 'hsaFamily', 'catchUpHsa']
 
 describe('CONTRIBUTION_LIMITS', () => {

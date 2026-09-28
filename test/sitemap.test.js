@@ -11,7 +11,7 @@ import { buildRobots, buildSitemap, routesFromMeta } from '../lib/sitemap'
 
 // Vitest runs from the repository root.
 const ROOT = process.cwd()
-const read = (path) => readFileSync(join(ROOT, path), 'utf8')
+const read = (/** @type {string} */ path) => readFileSync(join(ROOT, path), 'utf8')
 
 describe('routesFromMeta', () => {
   it('maps index to / and other keys to /key', () => {

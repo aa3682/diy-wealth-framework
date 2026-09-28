@@ -19,7 +19,7 @@ describe('formatUSD', () => {
   it('renders non-finite input as an em dash', () => {
     expect(formatUSD(NaN)).toBe('—')
     expect(formatUSD(Infinity)).toBe('—')
-    expect(formatUSD(undefined)).toBe('—')
+    expect(formatUSD(/** @type {any} */ (undefined))).toBe('—')
   })
 })
 

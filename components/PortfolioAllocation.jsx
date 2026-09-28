@@ -4,16 +4,16 @@ import NumberField from './ui/NumberField';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
-import { ALLOCATIONS, allocate } from '../lib/allocation';
+import { MODEL_NAMES, allocate } from '../lib/allocation';
 
 export default function PortfolioAllocation() {
   const capital = useNumberInput(10000);
-  const [model, setModel] = useState('aggressive');
+  const [model, setModel] = useState(/** @type {import('../lib/allocation').ModelName} */ ('aggressive'));
 
   return (
     <ToolCard title="Portfolio Allocation Simulator">
       <div className={styles.toggles} role="group" aria-label="Model portfolio">
-        {Object.keys(ALLOCATIONS).map(key => (
+        {MODEL_NAMES.map(key => (
           <button key={key} type="button" className={styles.toggle} onClick={() => setModel(key)} aria-pressed={model === key}>
             {key}
           </button>

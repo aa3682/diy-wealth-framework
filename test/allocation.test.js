@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { ALLOCATIONS, allocate } from '../lib/allocation'
+import { ALLOCATIONS, MODEL_NAMES, allocate } from '../lib/allocation'
 
 describe('ALLOCATIONS', () => {
   it('offers the three model portfolios in button order', () => {
-    expect(Object.keys(ALLOCATIONS)).toEqual(['aggressive', 'balanced', 'digital'])
+    expect(MODEL_NAMES).toEqual(['aggressive', 'balanced', 'digital'])
   })
 
   it('weights every model to 100%', () => {
@@ -30,7 +30,7 @@ describe('allocate', () => {
   })
 
   it('allocates every dollar in each model', () => {
-    for (const model of Object.keys(ALLOCATIONS)) {
+    for (const model of MODEL_NAMES) {
       const total = allocate(12345.67, model).reduce((sum, asset) => sum + asset.amount, 0)
       expect(total, model).toBeCloseTo(12345.67, 9)
     }

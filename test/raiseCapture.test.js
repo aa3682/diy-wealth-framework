@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { diagnoseRaiseCapture } from '../lib/raiseCapture'
 
+/**
+ * @param {number} pastIncome
+ * @param {number} currentIncome
+ * @param {number} pastSavings
+ * @param {number} currentSavings
+ */
 function diagnose(pastIncome, currentIncome, pastSavings, currentSavings) {
   return diagnoseRaiseCapture({ pastIncome, currentIncome, pastSavings, currentSavings })
 }

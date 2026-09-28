@@ -24,6 +24,7 @@ export default function AccountSequencingTool() {
     limits: LIMITS,
   });
 
+  /** @type {[string, number][]} */
   const steps = [
     ['1. 401k Match', match401k],
     ['2. HSA', hsa],
