@@ -17,6 +17,7 @@
   --tone-accent-bg: #022c22;
   --tone-accent-text: #6ee7b7;
   --tone-accent-pale: #a7f3d0;
+  --tone-accent-border: #065f46;
   --tone-info: #38bdf8;
   --tone-green: #22c55e;
   --tone-purple: #a855f7;
@@ -56,12 +57,12 @@
 }
 
 /* Tone mapping: any element with data-tone picks up --tone and --tone-bg. */
-.tool [data-tone="accent"]  { --tone: var(--tone-accent);  --tone-bg: var(--tone-accent-bg); --tone-text: var(--tone-accent-text); }
+.tool [data-tone="accent"]  { --tone: var(--tone-accent);  --tone-bg: var(--tone-accent-bg); --tone-text: var(--tone-accent-text); --tone-border: var(--tone-accent-border); }
 .tool [data-tone="info"]    { --tone: var(--tone-info);    --tone-bg: var(--tool-surface);   --tone-text: var(--tone-info); }
 .tool [data-tone="green"]   { --tone: var(--tone-green);   --tone-bg: var(--tool-surface);   --tone-text: var(--tone-green); }
 .tool [data-tone="purple"]  { --tone: var(--tone-purple);  --tone-bg: var(--tool-surface);   --tone-text: var(--tone-purple); }
 .tool [data-tone="warn"]    { --tone: var(--tone-warn);    --tone-bg: var(--tone-warn-bg);   --tone-text: var(--tone-warn); }
-.tool [data-tone="danger"]  { --tone: var(--tone-danger);  --tone-bg: var(--tone-danger-bg); --tone-text: var(--tone-danger-text); }
+.tool [data-tone="danger"]  { --tone: var(--tone-danger);  --tone-bg: var(--tone-danger-bg); --tone-text: var(--tone-danger-text); --tone-border: var(--tone-danger-border); }
 .tool [data-tone="neutral"] { --tone: var(--tone-neutral); --tone-bg: var(--tool-surface);   --tone-text: var(--tone-neutral); }
 
 /* Layout */
@@ -226,7 +227,8 @@
 .resultCentered {
   text-align: center;
   border-left: 0;
-  border: 1px solid var(--tone-danger-border);
+  /* Danger unless the tone sets its own border. */
+  border: 1px solid var(--tone-border, var(--tone-danger-border));
 }
 .resultCentered .resultBig {
   font-size: 2rem;

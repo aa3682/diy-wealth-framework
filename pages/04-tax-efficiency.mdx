@@ -4,6 +4,7 @@ description: Account sequencing from employer match to taxable brokerage, the Ba
 
 import AccountSequencingTool from '../components/AccountSequencingTool'
 import BackdoorRothSelector from '../components/BackdoorRothSelector'
+import EmployerMatchCalculator from '../components/EmployerMatchCalculator'
 import LeadCapture from '../components/LeadCapture'
 import { Callout } from 'nextra/components'
 
@@ -23,6 +24,10 @@ Fund your accounts in this specific order to maximize tax advantages:
 3. **Roth IRA:** Max out your Roth IRA. You pay taxes on the seed, but the harvest is permanently tax-free.
 4. **Max the 401(k):** Go back to your employer plan and fill it to the IRS maximum to reduce your current year taxable income.
 5. **Taxable Brokerage:** Once all tax-advantaged space is filled, route excess cash to a standard brokerage account.
+
+Start with step 1. Check that you are collecting your full match:
+
+<EmployerMatchCalculator />
 
 <AccountSequencingTool />
 
