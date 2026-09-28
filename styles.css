@@ -1,18 +1,18 @@
-/* 1. Import Custom Fintech Typography */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
-
+/* 1. Site typography. The Outfit face is self-hosted by next/font in
+   pages/_app.jsx and exposed as --font-outfit. Scoping the rule to body lets
+   code blocks keep their monospace stack instead of inheriting Outfit
+   through a blanket `span` selector. */
 :root {
-  /* Keep your AlignFlow Green Accent */
+  /* AlignFlow green accent */
   --nextra-primary-hue: 150deg;
   --nextra-primary-saturation: 80%;
 }
 
-/* Force the new font across all text and headers */
-body, html, h1, h2, h3, h4, h5, h6, p, a, span {
-  font-family: 'Outfit', sans-serif !important;
+body {
+  font-family: var(--font-outfit), 'Outfit', system-ui, sans-serif !important;
 }
 
-/* 2. Hover Physics for Nextra Homepage Cards */
+/* 2. Hover physics for Nextra homepage cards */
 .nextra-card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
 }
@@ -23,7 +23,7 @@ body, html, h1, h2, h3, h4, h5, h6, p, a, span {
   border-color: #10b981 !important;
 }
 
-/* 3. Glow Physics for Lead Capture Button */
+/* 3. Glow physics for the lead-capture button */
 .cta-button-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
 }
@@ -34,27 +34,35 @@ body, html, h1, h2, h3, h4, h5, h6, p, a, span {
   background-color: #059669 !important;
 }
 
-/* 4. Custom Fintech Scrollbar */
+/* 4. Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a; 
+  background: #0f172a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b; 
+  background: #1e293b;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10b981; 
+  background: #10b981;
 }
 
-/* 5. Keyboard focus for calculator controls and the CTA button.
-   Inline styles cannot express :focus-visible, so this lives here. */
-.nextra-content input:focus-visible,
-.nextra-content select:focus-visible,
-.nextra-content button:focus-visible,
+/* 5. Keyboard focus for the CTA button. Calculator controls carry their own
+   focus styles in components/ui/tool.module.css. */
 .cta-button-hover:focus-visible {
   outline: 2px solid #10b981;
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextra-card,
+  .cta-button-hover {
+    transition: none !important;
+  }
+  .nextra-card:hover,
+  .cta-button-hover:hover {
+    transform: none !important;
+  }
 }

@@ -1,0 +1,42 @@
+.card {
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 3rem 0;
+  background-color: #022c22;
+  color: #f8fafc;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.title {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #10b981;
+  font-weight: bold;
+}
+.body {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.cta {
+  display: inline-block;
+  background-color: #10b981;
+  color: #022c22;
+  padding: 0.875rem 1.5rem;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.footnote {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+}
+.secondary {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}

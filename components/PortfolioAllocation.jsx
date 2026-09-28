@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import ToolCard from './ui/ToolCard';
 import NumberField from './ui/NumberField';
+import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
 
@@ -24,30 +26,23 @@ export default function PortfolioAllocation() {
   const [model, setModel] = useState('aggressive');
 
   return (
-    <div style={{ border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem', margin: '1.5rem 0', backgroundColor: '#0f172a', color: '#f8fafc' }}>
-      <h3 style={{ marginTop: 0, fontSize: '1.25rem' }}>Portfolio Allocation Simulator</h3>
-      <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+    <ToolCard title="Portfolio Allocation Simulator">
+      <div className={styles.toggles} role="group" aria-label="Model portfolio">
         {Object.keys(allocations).map(key => (
-          <button key={key} type="button" onClick={() => setModel(key)} aria-pressed={model === key} style={{ padding: '0.5rem 1rem', borderRadius: '4px', border: model === key ? '2px solid #38bdf8' : '1px solid #475569', backgroundColor: model === key ? '#1e293b' : 'transparent', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}>
+          <button key={key} type="button" className={styles.toggle} onClick={() => setModel(key)} aria-pressed={model === key}>
             {key}
           </button>
         ))}
       </div>
-      <NumberField
-        id="allocation-capital"
-        label="Capital to Invest ($)"
-        step={1000}
-        inputStyle={{ maxWidth: '280px', marginBottom: '1.25rem', fontSize: undefined }}
-        {...capital.inputProps}
-      />
-      <div aria-live="polite" style={{ display: 'grid', gap: '0.75rem' }}>
+      <NumberField id="allocation-capital" label="Capital to Invest ($)" step={1000} spaced {...capital.inputProps} />
+      <div className={styles.stack} aria-live="polite">
         {allocations[model].map(asset => (
-          <div key={asset.ticker} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', background: '#1e293b', borderRadius: '6px', borderLeft: '4px solid #38bdf8' }}>
-            <div><strong>{asset.ticker}</strong> <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>({asset.name})</span></div>
+          <div key={asset.ticker} className={styles.listRow} data-tone="info">
+            <div><strong>{asset.ticker}</strong> <span className={styles.muted}>({asset.name})</span></div>
             <strong>{formatUSD(capital.value * asset.percent, { decimals: 2 })}</strong>
           </div>
         ))}
       </div>
-    </div>
+    </ToolCard>
   );
 }

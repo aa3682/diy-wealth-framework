@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import ToolCard from './ui/ToolCard';
 import NumberField from './ui/NumberField';
+import SelectField from './ui/SelectField';
+import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
 import { CURRENT_TAX_YEAR, getLimits } from '../lib/limits';
@@ -18,7 +21,7 @@ export default function AccountSequencingTool() {
     0;
 
   let remaining = investableCash.value;
-  
+
   const step1Match = Math.min(remaining, income.value * (matchPercent.value / 100));
   remaining -= step1Match;
 
@@ -33,42 +36,37 @@ export default function AccountSequencingTool() {
 
   const step5Taxable = remaining;
 
-  const fieldStyles = {
-    labelStyle: { fontSize: '0.75rem', color: '#94a3b8', marginBottom: 0 },
-    inputStyle: { width: 'auto', padding: '0.4rem', borderRadius: '4px', color: '#fff', fontSize: undefined },
-  };
+  const steps = [
+    ['1. 401k Match', step1Match],
+    ['2. HSA', step2HSA],
+    ['3. Roth IRA', step3Roth],
+    ['4. 401k Max', step4Max401k],
+    ['5. Taxable Brokerage', step5Taxable],
+  ];
 
   return (
-    <div style={{ border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem', margin: '1.5rem 0', backgroundColor: '#0f172a', color: '#f8fafc' }}>
-      <h3 style={{ marginTop: 0, marginBottom: '0.25rem', fontSize: '1.25rem' }}>Waterfall Sequencer</h3>
-      <p style={{ margin: '0 0 1rem', fontSize: '0.75rem', color: '#94a3b8' }}>
+    <ToolCard title="Waterfall Sequencer">
+      <p className={styles.note}>
         Using {CURRENT_TAX_YEAR} IRS limits: 401(k) {formatUSD(LIMITS.employee401k)} · IRA {formatUSD(LIMITS.ira)} · HSA {formatUSD(LIMITS.hsaSelfOnly)} self-only / {formatUSD(LIMITS.hsaFamily)} family. Catch-up contributions for age 50+ are not included.
       </p>
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-        <NumberField id="seq-income" label="Annual Income ($)" step={1000} {...fieldStyles} {...income.inputProps} />
-        <NumberField id="seq-match" label="401k Match (%)" step={0.5} labelStyle={fieldStyles.labelStyle} inputStyle={{ ...fieldStyles.inputStyle, width: '80px' }} {...matchPercent.inputProps} />
-        <NumberField id="seq-cash" label="Cash to Invest/Yr ($)" step={1000} {...fieldStyles} {...investableCash.inputProps} />
-        <div>
-          <label htmlFor="seq-hsa" style={{ display: 'block', fontSize: '0.75rem', color: '#94a3b8' }}>HDHP / HSA Coverage</label>
-          <select
-            id="seq-hsa"
-            value={hsaCoverage}
-            onChange={(e) => setHsaCoverage(e.target.value)}
-            style={{ display: 'block', padding: '0.4rem', borderRadius: '4px', background: '#1e293b', border: '1px solid #475569', color: '#fff' }}
-          >
-            <option value="self">Self-only</option>
-            <option value="family">Family</option>
-            <option value="none">Not eligible</option>
-          </select>
-        </div>
+      <div className={styles.grid} style={{ '--min': '160px' }}>
+        <NumberField id="seq-income" label="Annual Income ($)" step={1000} {...income.inputProps} />
+        <NumberField id="seq-match" label="401k Match (%)" step={0.5} {...matchPercent.inputProps} />
+        <NumberField id="seq-cash" label="Cash to Invest/Yr ($)" step={1000} {...investableCash.inputProps} />
+        <SelectField id="seq-hsa" label="HDHP / HSA Coverage" value={hsaCoverage} onChange={(e) => setHsaCoverage(e.target.value)}>
+          <option value="self">Self-only</option>
+          <option value="family">Family</option>
+          <option value="none">Not eligible</option>
+        </SelectField>
       </div>
-      <div aria-live="polite" style={{ display: 'grid', gap: '0.5rem' }}>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>1. 401k Match: <strong style={{ color: '#22c55e' }}>{formatUSD(step1Match)}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>2. HSA: <strong style={{ color: '#22c55e' }}>{formatUSD(step2HSA)}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>3. Roth IRA: <strong style={{ color: '#22c55e' }}>{formatUSD(step3Roth)}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>4. 401k Max: <strong style={{ color: '#22c55e' }}>{formatUSD(step4Max401k)}</strong></div>
-        <div style={{ padding: '0.75rem', background: '#1e293b', borderRadius: '6px' }}>5. Taxable Brokerage: <strong style={{ color: '#22c55e' }}>{formatUSD(step5Taxable)}</strong></div>
+      <div className={styles.stack} aria-live="polite">
+        {steps.map(([label, amount]) => (
+          <div key={label} className={styles.listRow}>
+            <span>{label}</span>
+            <strong className={styles.emphasis}>{formatUSD(amount)}</strong>
+          </div>
+        ))}
       </div>
-    </div>
+    </ToolCard>
   );
 }

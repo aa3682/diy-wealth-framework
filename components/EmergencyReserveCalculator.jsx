@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import ToolCard from './ui/ToolCard';
 import NumberField from './ui/NumberField';
+import SelectField from './ui/SelectField';
+import CheckOption from './ui/CheckOption';
+import ResultPanel from './ui/ResultPanel';
+import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
 
@@ -10,7 +15,7 @@ export default function EmergencyReserveCalculator() {
   const [isHomeowner, setIsHomeowner] = useState(false);
   const [hasDependents, setHasDependents] = useState(false);
 
-  let targetMonths = 3; 
+  let targetMonths = 3;
   if (incomeType === 'freelance') targetMonths = 6;
   else if (earners === 'single') targetMonths += 1;
 
@@ -23,59 +28,37 @@ export default function EmergencyReserveCalculator() {
   const targetDollarAmount = targetMonths * monthlyExpenses.value;
 
   return (
-    <div style={{ border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', margin: '2rem 0', backgroundColor: '#0f172a', color: '#f8fafc', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-      <h3 style={{ marginTop: 0, fontSize: '1.25rem', color: '#f8fafc' }}>Emergency Moat Sizer</h3>
-      <p style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-        Not all emergencies are created equal. Adjust your structural risk factors below to calculate your exact liquidity target.
-      </p>
+    <ToolCard
+      title="Emergency Moat Sizer"
+      lede="Not all emergencies are created equal. Adjust your structural risk factors below to calculate your exact liquidity target."
+    >
+      <NumberField id="reserve-monthly-expenses" label="Absolute Baseline Monthly Expenses ($)" step={500} spaced {...monthlyExpenses.inputProps} />
 
-      <NumberField
-        id="reserve-monthly-expenses"
-        label="Absolute Baseline Monthly Expenses ($)"
-        step={500}
-        wrapperStyle={{ marginBottom: '1.5rem' }}
-        labelStyle={{ fontWeight: 'bold' }}
-        inputStyle={{ maxWidth: '300px', padding: '0.75rem' }}
-        {...monthlyExpenses.inputProps}
-      />
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <label htmlFor="reserve-income-type" style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Income Source</label>
-          <select id="reserve-income-type" value={incomeType} onChange={(e) => setIncomeType(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
-            <option value="w2">W-2 Employee (Stable)</option>
-            <option value="freelance">Freelancer / Contractor</option>
-          </select>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <label htmlFor="reserve-earners" style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 'bold' }}>Household Earners</label>
-          <select id="reserve-earners" value={earners} onChange={(e) => setEarners(e.target.value)} style={{ padding: '0.6rem', borderRadius: '6px', border: '1px solid #475569', backgroundColor: '#1e293b', color: '#f8fafc' }}>
-            <option value="dual">Dual Income (Split Risk)</option>
-            <option value="single">Single Income</option>
-          </select>
-        </div>
+      <div className={styles.grid}>
+        <SelectField id="reserve-income-type" label="Income Source" value={incomeType} onChange={(e) => setIncomeType(e.target.value)}>
+          <option value="w2">W-2 Employee (Stable)</option>
+          <option value="freelance">Freelancer / Contractor</option>
+        </SelectField>
+        <SelectField id="reserve-earners" label="Household Earners" value={earners} onChange={(e) => setEarners(e.target.value)}>
+          <option value="dual">Dual Income (Split Risk)</option>
+          <option value="single">Single Income</option>
+        </SelectField>
       </div>
 
-      <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem', color: '#cbd5e1' }}>
-          <input type="checkbox" checked={isHomeowner} onChange={(e) => setIsHomeowner(e.target.checked)} style={{ width: '18px', height: '18px', accentColor: '#10b981' }} />
-          I own a home (Repair Risk)
-        </label>
-        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem', color: '#cbd5e1' }}>
-          <input type="checkbox" checked={hasDependents} onChange={(e) => setHasDependents(e.target.checked)} style={{ width: '18px', height: '18px', accentColor: '#10b981' }} />
-          I have dependents
-        </label>
+      <div className={styles.row}>
+        <CheckOption checked={isHomeowner} onChange={(e) => setIsHomeowner(e.target.checked)}>I own a home (Repair Risk)</CheckOption>
+        <CheckOption checked={hasDependents} onChange={(e) => setHasDependents(e.target.checked)}>I have dependents</CheckOption>
       </div>
 
-      <div aria-live="polite" style={{ padding: '1.25rem', borderRadius: '6px', backgroundColor: '#022c22', borderLeft: '4px solid #10b981', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <ResultPanel tone="accent" split>
         <div>
-          <div style={{ fontSize: '0.85rem', color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Target Reserve: {targetMonths} Months</div>
-          <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#f8fafc' }}>{formatUSD(targetDollarAmount)}</div>
+          <div className={styles.resultEyebrow}>Target Reserve: {targetMonths} Months</div>
+          <div className={styles.resultBig}>{formatUSD(targetDollarAmount)}</div>
         </div>
-        <p style={{ margin: 0, fontSize: '0.85rem', color: '#a7f3d0', maxWidth: '300px', lineHeight: '1.4' }}>
+        <p className={styles.resultAside}>
           Keep this capital in a highly liquid High-Yield Savings Account (HYSA). Do not invest these funds in the market.
         </p>
-      </div>
-    </div>
+      </ResultPanel>
+    </ToolCard>
   );
 }
