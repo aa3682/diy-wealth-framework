@@ -5,6 +5,7 @@ description: The 25x rule, the 4% rule, and a bond tent modeler for surviving se
 import FiCalculator from '../components/FiCalculator'
 import BondTentModeler from '../components/BondTentModeler'
 import LeadCapture from '../components/LeadCapture'
+import WithdrawalStressTest from '../components/WithdrawalStressTest'
 
 # Retirement Runway
 
@@ -18,6 +19,10 @@ To determine your FI number, calculate your projected annual expenses in retirem
 
 ## The 4% Rule (The Execution)
 The 25x rule is the inverse of the 4% Safe Withdrawal Rate. Historical modeling suggests that if you withdraw 4% of your portfolio's value in year one of retirement, and adjust that withdrawal amount for inflation each subsequent year, you have a highly statistically significant chance of not running out of money over a 30-year period.
+
+The average return is only half the story. The order the returns arrive in matters just as much:
+
+<WithdrawalStressTest />
 
 ## Sequence of Return Risk (The Bond Tent)
 The biggest threat to the 4% Rule is experiencing a severe market crash in the first few years of your retirement. Withdrawing living expenses while your portfolio is down forces you to sell assets at a heavy loss, permanently crippling your compounding engine.
