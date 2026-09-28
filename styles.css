@@ -66,3 +66,39 @@ body {
     transform: none !important;
   }
 }
+
+/* 6. Page background: the slate and soft emerald/blue glows of the share
+   card (public/og.png). Nextra paints the page, nav bar and sidebar from
+   --nextra-bg (an "r, g, b" triple), so setting it recolours all three. */
+.dark {
+  --nextra-bg: 15, 23, 42; /* #0f172a */
+}
+
+.dark body {
+  background-color: rgb(var(--nextra-bg));
+  background-image:
+    radial-gradient(1100px 600px at 100% 0%, rgba(59, 130, 246, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 0% 100%, rgba(16, 185, 129, 0.12), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Nextra fades scrolling text under the table-of-contents heading and the
+   sidebar and TOC footers with solid page-coloured shadows and fills, which
+   show as flat boxes over the glow. The lists here are short enough that
+   nothing scrolls under them. */
+@media (min-width: 768px) {
+  /* Desktop only: on mobile the sidebar is a drawer over the page, and the
+     footer's fill is what hides the page text behind it. */
+  .dark .nextra-sidebar-footer {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+.dark .nextra-toc p,
+.dark .nextra-toc-footer {
+  box-shadow: none !important;
+}
+
+.dark footer {
+  background-color: #0b1120 !important;
+}
