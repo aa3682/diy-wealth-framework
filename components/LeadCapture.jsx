@@ -1,35 +1,38 @@
 import React from 'react';
 import styles from './LeadCapture.module.css';
 
-// Placeholder until the owner supplies the real template download and
-// booking URLs. While TEMPLATES_URL is the placeholder the card is not
-// rendered at all, so the live site never shows buttons that go nowhere.
-// Setting a real URL brings the card back with no other change.
+// The templates are static files in public/templates/, built by
+// scripts/build-templates.py. The booking line stays hidden until the
+// owner supplies a real booking URL.
 const PLACEHOLDER_URL = '#';
-const TEMPLATES_URL = PLACEHOLDER_URL;
+const CASH_FLOW_URL = '/templates/cash-flow-tracker.xlsx';
+const NET_WORTH_URL = '/templates/net-worth-dashboard.xlsx';
 const BOOKING_URL = PLACEHOLDER_URL;
 
 /**
- * Lead-capture card. Hidden while the templates link is a placeholder;
- * the booking line is hidden while the booking link is.
+ * Lead-capture card with a download button per template. The booking
+ * line is hidden while the booking link is a placeholder.
  *
  * @param {object} props
- * @param {string} [props.templatesUrl]
  * @param {string} [props.bookingUrl]
  */
-export default function LeadCapture({ templatesUrl = TEMPLATES_URL, bookingUrl = BOOKING_URL }) {
-  if (templatesUrl === PLACEHOLDER_URL) return null;
-
+export default function LeadCapture({ bookingUrl = BOOKING_URL }) {
   return (
     <div className={styles.card}>
       <h3 className={styles.title}>Automate This Framework</h3>
       <p className={styles.body}>
-        Stop guessing. Download the Millennial Money Clarity <strong>Notion Cash Flow Tracker</strong> and <strong>Google Sheets Net Worth Dashboard</strong> to build your systems today.
+        Stop guessing. Download the DIY Wealth Framework <strong>Cash Flow Tracker</strong> and <strong>Net Worth Dashboard</strong> to build your systems today.
       </p>
 
-      <a href={templatesUrl} className={`${styles.cta} cta-button-hover`}>
-        Download the Free Templates
-      </a>
+      <div className={styles.actions}>
+        <a href={CASH_FLOW_URL} download aria-label="Download the Cash Flow Tracker (.xlsx)" className={`${styles.cta} cta-button-hover`}>
+          Cash Flow Tracker
+        </a>
+        <a href={NET_WORTH_URL} download aria-label="Download the Net Worth Dashboard (.xlsx)" className={`${styles.cta} cta-button-hover`}>
+          Net Worth Dashboard
+        </a>
+      </div>
+      <p className={styles.note}>Free .xlsx files. Open in Excel, Google Sheets or Numbers.</p>
 
       {bookingUrl !== PLACEHOLDER_URL && (
         <p className={styles.footnote}>
