@@ -1,1 +1,1 @@
-# diy-wealth-framework
+The DIY Wealth Framework is an open-source playbook and interactive documentation site designed for self-directed investors. The framework provides structured systems, calculators, and automation rules to help individuals build, manage, and protect their own wealth architecture without relying on traditional manual budgeting.
