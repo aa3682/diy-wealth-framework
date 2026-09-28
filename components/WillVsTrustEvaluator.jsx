@@ -53,7 +53,7 @@ export default function WillVsTrustEvaluator() {
                 {highNetWorth && <li>A $1M+ estate could lose tens of thousands of dollars to statutory probate fees.</li>}
                 {multiState && <li>Holding out-of-state property forces your family to hire lawyers and open probate in multiple states.</li>}
                 {staggered && <li>A Will cannot hold money over time; only a Trust can dictate delayed or milestone-based payouts.</li>}
-                {privacy && <li>Wills become public record. A Trust keeps your family's finances completely private.</li>}
+                {privacy && <li>Wills become public record. A Trust keeps your family&apos;s finances completely private.</li>}
               </ul>
             </div>
           ) : (

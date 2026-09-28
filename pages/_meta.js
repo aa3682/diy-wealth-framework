@@ -1,4 +1,4 @@
-export default {
+const meta = {
   "index": "Overview",
   "01-financial-defense": "1. Financial Defense",
   "02-cash-flow-systems": "2. Cash Flow Systems",
@@ -8,3 +8,5 @@ export default {
   "06-legacy-mechanics": "6. Legacy Mechanics",
   "07-next-steps": "7. Next Steps"
 }
+
+export default meta
