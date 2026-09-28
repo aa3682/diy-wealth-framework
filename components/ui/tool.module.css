@@ -198,6 +198,11 @@
   color: var(--tool-text);
   line-height: 1.5;
 }
+.resultBody a {
+  color: var(--tone-text, var(--tool-text));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .resultBody ul {
   margin: 0.5rem 0;
   padding-left: 1.25rem;
