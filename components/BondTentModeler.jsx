@@ -6,13 +6,13 @@ import ResultPanel from './ui/ResultPanel';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD } from '../lib/format';
+import { bondTentTarget } from '../lib/bondTent';
 
 export default function BondTentModeler() {
   const monthlyBurn = useNumberInput(6000);
   const [yearsProtection, setYearsProtection] = useState(3);
 
-  const annualBurn = monthlyBurn.value * 12;
-  const tentTarget = annualBurn * yearsProtection;
+  const tentTarget = bondTentTarget({ monthlyBurn: monthlyBurn.value, years: yearsProtection });
 
   return (
     <ToolCard

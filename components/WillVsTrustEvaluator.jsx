@@ -5,6 +5,7 @@ import CheckOption from './ui/CheckOption';
 import ResultPanel from './ui/ResultPanel';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
+import { evaluateWillVsTrust } from '../lib/willVsTrust';
 
 export default function WillVsTrustEvaluator() {
   const netWorth = useNumberInput(400000);
@@ -12,8 +13,7 @@ export default function WillVsTrustEvaluator() {
   const [staggered, setStaggered] = useState(false);
   const [privacy, setPrivacy] = useState(false);
 
-  const highNetWorth = netWorth.value >= 1000000;
-  const requiresTrust = highNetWorth || multiState || staggered || privacy;
+  const { highNetWorth, requiresTrust } = evaluateWillVsTrust({ netWorth: netWorth.value, multiState, staggered, privacy });
 
   return (
     <ToolCard

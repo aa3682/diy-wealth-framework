@@ -5,17 +5,16 @@ import Tile from './ui/Tile';
 import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD, formatPercent } from '../lib/format';
-
-const FI_MULTIPLE = 25;
+import { fiProgress } from '../lib/fi';
 
 export default function FiCalculator() {
   const annualExpenses = useNumberInput(80000);
   const currentPortfolio = useNumberInput(250000);
 
-  const fiNumber = annualExpenses.value * FI_MULTIPLE;
-  const gap = Math.max(0, fiNumber - currentPortfolio.value);
-  const progress = fiNumber > 0 ? Math.min(100, (currentPortfolio.value / fiNumber) * 100) : 0;
-  const reached = fiNumber > 0 && gap === 0;
+  const { fiNumber, gap, progress, reached } = fiProgress({
+    annualExpenses: annualExpenses.value,
+    currentPortfolio: currentPortfolio.value,
+  });
 
   return (
     <ToolCard
