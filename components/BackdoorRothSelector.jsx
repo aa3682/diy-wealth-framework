@@ -6,6 +6,7 @@ import styles from './ui/tool.module.css';
 import { useNumberInput } from '../lib/useNumberInput';
 import { formatUSD, formatPercent } from '../lib/format';
 import { getLimits } from '../lib/limits';
+import { proRataSplit } from '../lib/proRata';
 
 export default function BackdoorRothSelector() {
   const contribution = useNumberInput(getLimits().ira);
@@ -14,13 +15,8 @@ export default function BackdoorRothSelector() {
   const activeContribution = contribution.value;
   const activeBalance = existingBalance.value;
 
-  const totalBalance = activeContribution + activeBalance;
-  const taxFreeRatio = totalBalance > 0 ? activeContribution / totalBalance : 1;
-  const taxableRatio = totalBalance > 0 ? activeBalance / totalBalance : 0;
-
-  const taxableAmount = activeContribution * taxableRatio;
-  const taxFreeAmount = activeContribution * taxFreeRatio;
-  const hasProRataTrap = activeBalance > 0;
+  const { taxFreeRatio, taxableRatio, taxFreeAmount, taxableAmount, hasProRataTrap } =
+    proRataSplit(activeContribution, activeBalance);
 
   return (
     <ToolCard
