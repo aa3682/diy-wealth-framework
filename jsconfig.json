@@ -22,6 +22,7 @@
     "components/**/*.jsx",
     "lib/**/*.js",
     "test/**/*.js",
+    "test/**/*.jsx",
     "theme.config.jsx",
     "next.config.mjs",
     "vitest.config.mjs",
