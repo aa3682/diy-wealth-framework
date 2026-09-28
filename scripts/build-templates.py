@@ -351,6 +351,9 @@ def build_cash_flow_tracker():
 # Net Worth Dashboard
 # --------------------------------------------------------------------------
 
+# Liquid marks the assets you could spend within days, and the debts that
+# count against them. The mortgage and auto loan are left out because the
+# home and car securing them are left out too.
 TYPES = [
     ('Cash', 'Asset', 'Yes'),
     ('Taxable investing', 'Asset', 'Yes'),
@@ -360,10 +363,10 @@ TYPES = [
     ('Vehicle', 'Asset', 'No'),
     ('Other asset', 'Asset', 'No'),
     ('Mortgage', 'Debt', ''),
-    ('Student loan', 'Debt', ''),
+    ('Student loan', 'Debt', 'Yes'),
     ('Auto loan', 'Debt', ''),
-    ('Credit card', 'Debt', ''),
-    ('Other debt', 'Debt', ''),
+    ('Credit card', 'Debt', 'Yes'),
+    ('Other debt', 'Debt', 'Yes'),
 ]
 ASSET_TYPES = [t for t, kind, _ in TYPES if kind == 'Asset']
 
@@ -470,12 +473,14 @@ def net_worth_snapshots(ws):
         c = get_column_letter(FIRST_MONTH_COL + i)
         vals = f'{c}${ACC_FIRST}:{c}${ACC_LAST}'
         has = f'{c}${TOTAL_ROWS["has"]}'
+        kind = f'Accounts!$C${ACC_FIRST}:$C${ACC_LAST}'
+        liquid = f'Accounts!$D${ACC_FIRST}:$D${ACC_LAST}'
         formulas = {
             'assets': f'SUMIFS({vals},Accounts!$C${ACC_FIRST}:$C${ACC_LAST},"Asset")',
             'debts': f'SUMIFS({vals},Accounts!$C${ACC_FIRST}:$C${ACC_LAST},"Debt")',
             'net': f'{c}{TOTAL_ROWS["assets"]}-{c}{TOTAL_ROWS["debts"]}',
-            'liquid': f'SUMIFS({vals},Accounts!$D${ACC_FIRST}:$D${ACC_LAST},"Yes")',
-            'liquid_net': f'{c}{TOTAL_ROWS["liquid"]}-{c}{TOTAL_ROWS["debts"]}',
+            'liquid': f'SUMIFS({vals},{kind},"Asset",{liquid},"Yes")',
+            'liquid_net': f'{c}{TOTAL_ROWS["liquid"]}-SUMIFS({vals},{kind},"Debt",{liquid},"Yes")',
             'cash': f'SUMIFS({vals},Accounts!$B${ACC_FIRST}:$B${ACC_LAST},"Cash")',
         }
         for key, formula in formulas.items():
@@ -524,8 +529,11 @@ def net_worth_dashboard(ws):
     label(ws, 'A12', 'Debt-to-asset ratio', BODY_FONT)
     ws['B12'] = '=IF(AND(ISNUMBER(B8),B8>0),B9/B8,"")'
     ws['B12'].number_format = PCT
-    ws['A13'] = 'Liquid net worth counts cash and taxable investing, minus all debts.'
+    ws['A13'] = ('Liquid net worth: cash and taxable investing, minus debts other than the '
+                 'mortgage and auto loan.')
     ws['A13'].font = SUBTITLE_FONT
+    ws['A13'].alignment = WRAP
+    ws.merge_cells('A13:C14')
 
     label(ws, 'A15', 'Emergency reserve', SECTION_FONT)
     label(ws, 'A16', 'Monthly essential expenses', BODY_FONT)
