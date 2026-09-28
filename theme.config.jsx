@@ -4,6 +4,7 @@ import CurrentYear from './components/CurrentYear'
 import { absoluteUrl } from './lib/site'
 
 const SITE_NAME = 'DIY Wealth Framework'
+const OG_IMAGE_ALT = 'DIY Wealth Framework: systems and interactive calculators for self-directed investors.'
 const SITE_DESCRIPTION =
   'An open-source playbook and interactive calculators for self-directed investors: financial defense, cash flow systems, wealth accumulation, tax efficiency, retirement runway, and legacy mechanics.'
 
@@ -32,9 +33,15 @@ const themeConfig = {
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content={absoluteUrl('/og.png')} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={OG_IMAGE_ALT} />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={absoluteUrl('/og.png')} />
+        <meta name="twitter:image:alt" content={OG_IMAGE_ALT} />
       </>
     )
   },
