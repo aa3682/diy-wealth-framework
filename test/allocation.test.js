@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { ALLOCATIONS, MODEL_NAMES, allocate } from '../lib/allocation'
 
 describe('ALLOCATIONS', () => {
-  it('offers the three model portfolios in button order', () => {
-    expect(MODEL_NAMES).toEqual(['aggressive', 'balanced', 'digital'])
+  it('offers the four model portfolios in button order', () => {
+    expect(MODEL_NAMES).toEqual(['aggressive', 'balanced', 'conservative', 'digital'])
   })
 
   it('weights every model to 100%', () => {
@@ -26,6 +26,13 @@ describe('allocate', () => {
     expect(allocate(10000, 'aggressive').map(({ ticker, amount }) => [ticker, amount])).toEqual([
       ['VTI', 8000],
       ['VXUS', 2000],
+    ])
+  })
+
+  it('splits the conservative model 60/40 between global stocks and bonds', () => {
+    expect(allocate(10000, 'conservative').map(({ ticker, amount }) => [ticker, amount])).toEqual([
+      ['VT', 6000],
+      ['BND', 4000],
     ])
   })
 
