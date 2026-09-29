@@ -36,7 +36,7 @@ export default function BondTentModeler() {
           <div className={styles.resultBig}>{formatUSD(tentTarget)}</div>
         </div>
         <p className={styles.resultAside}>
-          In the 3 to 5 years before you retire, gradually shift this amount from equities into cash, CDs, or short-term treasuries (like SGOV or USFR) to secure your runway.
+          In the 3 to 5 years before you retire, gradually shift this amount from equities into cash, CDs, or short-term treasuries to secure your runway.
         </p>
       </ResultPanel>
     </ToolCard>

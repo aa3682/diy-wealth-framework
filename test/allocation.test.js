@@ -13,26 +13,26 @@ describe('ALLOCATIONS', () => {
     }
   })
 
-  it('has unique tickers within each model', () => {
+  it('has unique names within each model', () => {
     for (const assets of Object.values(ALLOCATIONS)) {
-      const tickers = assets.map((asset) => asset.ticker)
-      expect(new Set(tickers).size).toBe(tickers.length)
+      const names = assets.map((asset) => asset.name)
+      expect(new Set(names).size).toBe(names.length)
     }
   })
 })
 
 describe('allocate', () => {
   it('splits the calculator default of $10,000 into the aggressive model', () => {
-    expect(allocate(10000, 'aggressive').map(({ ticker, amount }) => [ticker, amount])).toEqual([
-      ['VTI', 8000],
-      ['VXUS', 2000],
+    expect(allocate(10000, 'aggressive').map(({ name, amount }) => [name, amount])).toEqual([
+      ['Total US stock market fund', 8000],
+      ['Total international stock fund', 2000],
     ])
   })
 
   it('splits the conservative model 60/40 between global stocks and bonds', () => {
-    expect(allocate(10000, 'conservative').map(({ ticker, amount }) => [ticker, amount])).toEqual([
-      ['VT', 6000],
-      ['BND', 4000],
+    expect(allocate(10000, 'conservative').map(({ name, amount }) => [name, amount])).toEqual([
+      ['Total world stock fund', 6000],
+      ['Total US bond fund', 4000],
     ])
   })
 
@@ -43,7 +43,7 @@ describe('allocate', () => {
     }
   })
 
-  it('keeps ticker and name alongside the amount', () => {
-    expect(allocate(1000, 'digital')[2]).toEqual({ ticker: 'IBIT/ETHA', name: 'Digital Asset ETFs', percent: 0.05, amount: 50 })
+  it('keeps name alongside the amount', () => {
+    expect(allocate(1000, 'digital')[2]).toEqual({ name: 'Spot crypto ETFs (bitcoin and ether)', percent: 0.05, amount: 50 })
   })
 })
