@@ -14,7 +14,6 @@ const themeConfig = {
       DIY Wealth <span style={{ color: '#10b981' }}>Framework</span>
     </span>
   ),
-  faviconGlyph: '🛡️',
   head: function Head() {
     const { asPath, pathname } = useRouter()
     const { frontMatter, title } = useConfig()
@@ -27,6 +26,8 @@ const themeConfig = {
       <>
         <title>{pageTitle}</title>
         <meta name="description" content={description} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         {!isErrorPage && <link rel="canonical" href={url} />}
         <meta property="og:type" content="website" />
         {!isErrorPage && <meta property="og:url" content={url} />}
