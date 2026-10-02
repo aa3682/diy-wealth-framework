@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The 2026 Money Cheat Sheet · AlignFlow OS · DIY Wealth Framework</title>
+<!--
+  AlignFlow OS · DIY Wealth Framework · 2026 Money Cheat Sheet (PRINT, US Letter)
+  Source of record for public/downloads/2026-money-cheat-sheet.pdf. Render with headless Chromium: Letter, no margins, backgrounds on.
+  Design: original palette and type, a cheat-sheet-only exception (ruled 2 Oct 2026).
+  Figures: signed off 2 Oct 2026 against the private figure registry; row IDs listed below.
+  Any change to a printed figure, a source attribution or the ROWS list reruns the figure checks before the PDF is replaced.
+-->
+<!-- ROWS: 1.1, 1.2, 1.3, 1.5, 1.6, 2.1, 2.2, 2.5, 2.6, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.1, 4.2, 7.1, 7.2, 7.3, 7.3a, 7.5, 7.6, 7.7, 7.8, 7.9, 7.10, 7.11, 7.12, 7.14, 7.15 -->
+<style>
+  :root{--paper:#FBF9F6;--card:#FFFFFF;--ink:#16211E;--muted:#5C6A64;--rule:#E4DFD7;--green:#0B6E5F;--tint:#E7F1EE}
+  *{margin:0;padding:0;box-sizing:border-box}
+  @page{size:letter;margin:0}
+  html,body{background:var(--paper)}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:816px;height:1056px;margin:0 auto;background:var(--paper);padding:28px 44px 22px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+  .serif{font-family:Georgia,"Times New Roman",serif;font-weight:400}
+  .num{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+  .label{font-size:9.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);font-weight:400}
+
+  /* masthead */
+  .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--green);padding-bottom:7px}
+  .wordmark{font-family:Georgia,serif;font-size:21px;color:var(--ink);letter-spacing:-.2px}
+  .wordmark b{font-weight:400;color:var(--green)}
+  .brand{display:flex;align-items:center;gap:8px}
+  .mark{flex:none;align-self:center}
+  .mast .label{margin-left:12px}
+  .tag{font-family:Georgia,serif;font-style:italic;font-size:12.5px;color:var(--muted)}
+
+  .hero{padding:12px 0 8px}
+  .hero h1{font-family:Georgia,serif;font-weight:400;font-size:30px;line-height:34px;letter-spacing:-.4px;color:var(--ink)}
+  .hero h1 span{color:var(--green)}
+  .hero p{font-size:12.5px;line-height:17px;color:var(--muted);margin-top:4px;max-width:700px}
+
+  .sec{margin-top:8px}
+  .sec h2{font-family:Georgia,serif;font-weight:400;font-size:15.5px;color:var(--ink);display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:6px}
+  .sec h2 .label{font-size:9px;letter-spacing:1.2px}
+  table{width:100%;border-collapse:collapse;font-size:10.3px}
+  th{text-align:left;padding:2px 6px 4px;border-bottom:1px solid var(--rule)}
+  td{padding:2.8px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.rate{color:var(--green)}
+  td.num,th.num{text-align:left}
+  .note{font-size:9.6px;line-height:14px;color:var(--muted);margin-top:5px}
+  .note .num{color:var(--ink);font-weight:700}
+
+  .cols{display:flex;gap:22px}
+  .cols>div{flex:1}
+  ul{list-style:none;font-size:10.5px}
+  li{padding:3px 0 3px 13px;position:relative;line-height:14px;border-bottom:1px solid var(--rule)}
+  li:last-child{border-bottom:none}
+  li:before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+  li .k{color:var(--ink)}
+  li .m{color:var(--muted)}
+  .new{display:inline-block;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;color:var(--green);border:1px solid var(--green);border-radius:2px;padding:0 4px;line-height:11px;margin-left:5px;vertical-align:1px;font-weight:700}
+
+  /* exercises */
+  .ex{margin-top:9px;background:var(--tint);padding:9px 16px 8px;border-left:3px solid var(--green)}
+  .ex .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+  .ex h2{font-family:Georgia,serif;font-weight:400;font-size:15px;color:var(--ink)}
+  .ex .head .label{color:var(--green)}
+  .ex ol{list-style:none;counter-reset:x;display:flex;gap:18px}
+  .ex ol li{counter-increment:x;flex:1;padding:0 0 0 22px;border:none;font-size:10.3px;line-height:14.5px;color:var(--ink)}
+  .ex ol li:before{content:counter(x);background:none;width:auto;height:auto;border-radius:0;top:0;left:0;font-family:Georgia,serif;font-size:17px;color:var(--green);line-height:16px}
+  .ex ol li b{font-weight:700}
+
+
+
+  .foot{margin-top:auto;padding-top:7px;border-top:1px solid var(--rule);font-size:8pt;line-height:1.35;color:var(--muted)}
+  .foot b{font-weight:700;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="mast">
+    <div class="brand"><svg class="mark" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#10b981"/><rect x="13" y="7.5" width="6" height="4.5" rx="2" fill="#022c22"/><rect x="9.5" y="14" width="13" height="4.5" rx="2" fill="#022c22"/><rect x="6" y="20.5" width="7" height="4.5" rx="2" fill="#022c22"/><rect x="19" y="20.5" width="7" height="4.5" rx="2" fill="#022c22"/></svg><span class="wordmark">AlignFlow OS</span><span class="label">DIY Wealth Framework</span></div>
+    <div class="tag">Tax year 2026 · federal</div>
+  </div>
+
+  <div class="hero">
+    <h1>The <span>2026</span> Money Cheat Sheet</h1>
+    <p>Every number that matters this year, on one page — the limits, phase-outs, and thresholds for tax year 2026. Each figure cites its IRS or statutory source below. No jargon, no instructions; you make the calls.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Federal income tax brackets <span class="label">2026 · taxable income · marginal</span></h2>
+    <table>
+      <tr><th class="label">Rate</th><th class="label">Single</th><th class="label">Married filing jointly</th><th class="label">Head of household</th></tr>
+      <tr><td class="rate num">10%</td><td class="num">$0 – $12,400</td><td class="num">$0 – $24,800</td><td class="num">$0 – $17,700</td></tr>
+      <tr><td class="rate num">12%</td><td class="num">$12,401 – $50,400</td><td class="num">$24,801 – $100,800</td><td class="num">$17,701 – $67,450</td></tr>
+      <tr><td class="rate num">22%</td><td class="num">$50,401 – $105,700</td><td class="num">$100,801 – $211,400</td><td class="num">$67,451 – $105,700</td></tr>
+      <tr><td class="rate num">24%</td><td class="num">$105,701 – $201,775</td><td class="num">$211,401 – $403,550</td><td class="num">$105,701 – $201,750</td></tr>
+      <tr><td class="rate num">32%</td><td class="num">$201,776 – $256,225</td><td class="num">$403,551 – $512,450</td><td class="num">$201,751 – $256,200</td></tr>
+      <tr><td class="rate num">35%</td><td class="num">$256,226 – $640,600</td><td class="num">$512,451 – $768,700</td><td class="num">$256,201 – $640,600</td></tr>
+      <tr><td class="rate num">37%</td><td class="num">Over $640,600</td><td class="num">Over $768,700</td><td class="num">Over $640,600</td></tr>
+    </table>
+    <div class="note">Standard deduction: <span class="num">$16,100</span> single · <span class="num">$32,200</span> joint · <span class="num">$24,150</span> head of household. Brackets are marginal — only the income inside each band is taxed at that rate. Long-term capital gains: 0% rate up to <span class="num">$49,450</span> taxable income single · <span class="num">$98,900</span> joint · <span class="num">$66,200</span> head of household.</div>
+  </div>
+
+  <div class="sec">
+    <h2>Retirement &amp; health account limits <span class="label">2026 · contribution</span></h2>
+    <table>
+      <tr><th class="label">Account</th><th class="label">Under 50</th><th class="label">Catch-up, 50+</th><th class="label">Income phase-out (MAGI)</th></tr>
+      <tr><td>401(k) · 403(b) · most 457 · TSP</td><td class="num">$24,500</td><td class="num">+$8,000</td><td class="num" style="font-weight:400;color:var(--muted)">n/a · ages 60–63: catch-up is $11,250 instead, if your plan allows</td></tr>
+      <tr><td>Roth IRA</td><td class="num">$7,500</td><td class="num">+$1,100</td><td class="num">$153,000 – $168,000 single/HoH · $242,000 – $252,000 joint</td></tr>
+      <tr><td>Traditional IRA (deduction, if covered at work)</td><td class="num">$7,500</td><td class="num">+$1,100</td><td class="num">$81,000 – $91,000 single · $129,000 – $149,000 joint</td></tr>
+      <tr><td>HSA — self-only / family</td><td class="num">$4,400 / $8,750</td><td class="num" style="font-weight:400;color:var(--muted)">—</td><td class="num" style="font-weight:400;color:var(--muted)">n/a · requires a qualifying high-deductible plan</td></tr>
+      <tr><td>Health FSA</td><td class="num">$3,400</td><td class="num" style="font-weight:400;color:var(--muted)">—</td><td class="num" style="font-weight:400;color:var(--muted)">n/a</td></tr>
+    </table>
+    <div class="note">The IRA limit is shared between Roth and Traditional — one <span class="num">$7,500</span> total, not each. High earners: if your 2025 wages from that employer topped <span class="num">$150,000</span>, any 2026 catch-up in that plan must go in as Roth.</div>
+  </div>
+
+  <div class="sec">
+    <h2>Thresholds worth knowing <span class="label">2026 · what changed is marked</span></h2>
+    <div class="cols">
+      <div>
+        <ul>
+          <li><span class="k">Child Tax Credit:</span> <span class="num">$2,200</span> per child <span class="m">(up to $1,700 refundable)</span><span class="new">Raised</span></li>
+          <li><span class="k">Annual gift exclusion:</span> <span class="num">$19,000</span> per recipient, per giver</li>
+          <li><span class="k">Student loan interest:</span> deduct up to <span class="num">$2,500</span> <span class="m">(phases out $85,000–$100,000 single/HoH · $175,000–$205,000 joint)</span></li>
+          <li><span class="k">CTC phase-out:</span> starts at <span class="num">$400,000</span> joint · <span class="num">$200,000</span> other <span class="m">(credit falls $50 per $1,000 of MAGI above)</span></li>
+          <li><span class="k">Dependent care FSA:</span> <span class="num">$7,500</span> household · <span class="num">$3,750</span> MFS <span class="m">(up from $5,000/$2,500 — only if your employer's plan adopts it)</span><span class="new">Raised</span></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><span class="k">Quarterly estimates:</span> generally required if you'll owe <span class="num">$1,000+</span> after withholding and refundable credits</li>
+          <li><span class="k">1099-NEC threshold:</span> <span class="num">$2,000+</span> <span class="m">(the $600 rule is gone)</span><span class="new">Changed</span></li>
+          <li><span class="k">Business mileage:</span> <span class="num">72.5¢</span> Jan–Jun, <span class="num">76¢</span> Jul–Dec <span class="m">(changed mid-year)</span><span class="new">Changed</span></li>
+          <li><span class="k">Self-employment tax:</span> <span class="num">15.3%</span> on 92.35% of net profit <span class="m">(owed once net earnings reach $400)</span></li>
+          <li><span class="k">HSA catch-up, 55+:</span> <span class="num">+$1,000</span> on top of the contribution limits above <span class="m">(self-only or family, either way)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="head"><h2>Three five-minute gap checks</h2><span class="label">Reference only — this page reports the difference and stops there</span></div>
+    <ol>
+      <li><b>Find your gap.</b> Circle the bracket your taxable income lands in and write down the dollars left before the next line.</li>
+      <li><b>Room remaining.</b> Add up what you've put into your 401(k), IRA, and HSA so far this year. Write each next to its limit above. The difference is room. 401(k) room closes December 31; IRA and HSA room for 2026 stays open until April 15, 2027.</li>
+      <li><b>Phase-out check.</b> Circle every range on this page your income lands inside — Roth, Traditional deduction, student loan interest. Inside a range means the rule is partially yours; that's worth knowing before year-end.</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <b>Figures checked September 2026 against:</b> IRS Rev. Proc. 2025-32 (brackets, standard deduction, capital gains, Child Tax Credit amount, student loan interest, 1099-NEC threshold, gift exclusion, Health FSA) · IRS Notice 2025-67 (401(k), IRA, catch-ups, IRA phase-outs) · IRS Rev. Proc. 2025-19 (HSA) · IR-2025-128 and IR-2026-29 (mileage) · IRS Form 1040-ES (quarterly estimated-payment threshold, self-employment tax rate) · 26 U.S.C. §24(b) (Child Tax Credit phase-out), §223(b)(3)(B) (HSA catch-up), §129(a)(2)(A) as amended by OBBBA (dependent care FSA), §6017 (self-employment tax filing threshold), via uscode.house.gov. Federal only; states differ. · diy-wealth-framework.vercel.app<br>
+    Educational content only. Implement on your own through any low-cost broker or consult a qualified professional.<br>
+    Disclaimer: This is general education only, not personalized investment, tax, or legal advice. Rules can change; consult qualified professionals for your unique situation.<br>
+    AlignFlow and its products are not affiliated with, endorsed by, or certified by the Certified Financial Planner Board of Standards, Inc. CFP® and CERTIFIED FINANCIAL PLANNER® are certification marks owned by CFP Board.
+  </div>
+
+</div>
+</body>
+</html>

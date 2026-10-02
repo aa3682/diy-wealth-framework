@@ -12,17 +12,18 @@ afterEach(cleanup)
 const hrefs = (container) => [...container.querySelectorAll('a')].map((a) => a.getAttribute('href'))
 
 describe('LeadCapture', () => {
-  it('offers both templates as downloads and hides the booking line while it is a placeholder', () => {
+  it('offers the two templates and the cheat sheet as downloads and hides the booking line while it is a placeholder', () => {
     const { container } = render(<LeadCapture />)
     expect(hrefs(container)).toEqual([
       '/templates/cash-flow-tracker.xlsx',
       '/templates/net-worth-dashboard.xlsx',
+      '/downloads/2026-money-cheat-sheet.pdf',
     ])
     for (const a of container.querySelectorAll('a')) expect(a.hasAttribute('download')).toBe(true)
     expect(container.textContent).not.toContain('Book a diagnostic call')
   })
 
-  it('links to template files that exist in public/', () => {
+  it('links to download files that exist in public/', () => {
     const { container } = render(<LeadCapture />)
     for (const href of hrefs(container)) {
       expect(existsSync(join(process.cwd(), 'public', String(href))), String(href)).toBe(true)
@@ -34,6 +35,7 @@ describe('LeadCapture', () => {
     expect(hrefs(container)).toEqual([
       '/templates/cash-flow-tracker.xlsx',
       '/templates/net-worth-dashboard.xlsx',
+      '/downloads/2026-money-cheat-sheet.pdf',
       'https://example.com/book',
     ])
   })
