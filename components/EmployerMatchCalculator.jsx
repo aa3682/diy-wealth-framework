@@ -68,7 +68,7 @@ export default function EmployerMatchCalculator() {
           <div className={styles.resultEyebrow}>Left on the Table Each Year</div>
           <div className={styles.resultBig}>{formatUSD(Math.round(leftOnTable))}</div>
           <div className={styles.resultFine}>
-            Contribute at least <strong>{percentLabel(fullMatchPercent)}</strong> of your pay to collect the full match.
+            The full match starts at <strong>{percentLabel(fullMatchPercent)}</strong> of your pay.
           </div>
         </ResultPanel>
       ) : (
@@ -82,7 +82,7 @@ export default function EmployerMatchCalculator() {
       {limitMonth !== null && evenSpreadPercent !== null && atRisk > 0 && (
         <ResultPanel tone="warn" title="Check for a true-up">
           <div className={styles.resultBody}>
-            At this rate your contributions reach the {formatUSD(LIMITS.employee401k)} limit with your <strong>{MONTHS[limitMonth - 1]}</strong> paycheck and stop for the rest of the year. If your plan matches each paycheck and has no year-end true-up, you lose about <strong>{formatUSD(atRisk)}</strong> of match. Ask HR, or contribute <strong>{formatPercent(Math.floor(evenSpreadPercent * 10) / 10)}</strong> or less so every paycheck gets matched. Assumes 12 equal monthly paychecks.
+            At this rate your contributions reach the {formatUSD(LIMITS.employee401k)} limit with your <strong>{MONTHS[limitMonth - 1]}</strong> paycheck and stop for the rest of the year. If your plan matches each paycheck and has no year-end true-up, you lose about <strong>{formatUSD(atRisk)}</strong> of match. Your plan documents or HR can confirm whether a true-up applies. At <strong>{formatPercent(Math.floor(evenSpreadPercent * 10) / 10)}</strong> or less, every paycheck stays matched. Assumes 12 equal monthly paychecks.
           </div>
         </ResultPanel>
       )}

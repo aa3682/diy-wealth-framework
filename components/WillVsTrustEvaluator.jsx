@@ -18,7 +18,7 @@ export default function WillVsTrustEvaluator() {
   return (
     <ToolCard
       title="Will vs. Trust Evaluator"
-      lede="A Last Will goes through probate (public, slow, expensive). A Revocable Living Trust bypasses probate entirely. Select your criteria below to see which structure your wealth architecture requires."
+      lede="A Last Will generally goes through probate (public, slow, often costly). A funded Revocable Living Trust avoids it for the assets it holds. Select your criteria below to see how the framework's criteria apply."
     >
       <NumberField
         id="trust-net-worth"
@@ -43,22 +43,22 @@ export default function WillVsTrustEvaluator() {
 
       <ResultPanel
         tone={requiresTrust ? 'accent' : 'info'}
-        title={`Recommendation: ${requiresTrust ? 'Revocable Living Trust' : 'Simple Will + TOD/POD'}`}
+        title={`Framework Result: ${requiresTrust ? 'Revocable Living Trust' : 'Simple Will + TOD/POD'}`}
       >
         <div className={styles.resultBody}>
           {requiresTrust ? (
             <div>
-              You have crossed the threshold requiring a Revocable Living Trust.
+              Your inputs meet the framework&apos;s criteria for a Revocable Living Trust.
               <ul>
-                {highNetWorth && <li>A $1M+ estate could lose tens of thousands of dollars to statutory probate fees.</li>}
-                {multiState && <li>Holding out-of-state property forces your family to hire lawyers and open probate in multiple states.</li>}
-                {staggered && <li>A Will cannot hold money over time; only a Trust can dictate delayed or milestone-based payouts.</li>}
-                {privacy && <li>Wills become public record. A Trust keeps your family&apos;s finances completely private.</li>}
+                {highNetWorth && <li>Probate fees on a $1M+ estate vary by state and can be substantial.</li>}
+                {multiState && <li>Out-of-state property can mean opening a separate probate in each state where it sits.</li>}
+                {staggered && <li>A Will alone pays out at once; a Trust is what holds money over time for delayed or milestone-based payouts.</li>}
+                {privacy && <li>Wills become public record. A Trust keeps the distribution off the public court record.</li>}
               </ul>
             </div>
           ) : (
             <div>
-              Based on your current profile, a standard Last Will and Testament is sufficient, provided you diligently assign Transfer-On-Death (TOD) and Payable-On-Death (POD) designations to all your bank and brokerage accounts to avoid probate.
+              Your inputs fall under the framework&apos;s criteria for a standard Last Will and Testament, paired with Transfer-On-Death (TOD) and Payable-On-Death (POD) designations on bank and brokerage accounts to keep them out of probate.
             </div>
           )}
         </div>

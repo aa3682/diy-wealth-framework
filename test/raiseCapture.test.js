@@ -45,7 +45,7 @@ describe('diagnoseRaiseCapture', () => {
     expect(result.tone).toBe('danger')
     expect(result.advice).toBe(
       'Your income rose by $30,000, but your savings fell by $3,000. You are spending all of your raise and more. ' +
-        'You urgently need an intermediate Holding Account to trap raises before they hit your checking account.'
+        'This is the pattern the Holding Account, described above, is built to interrupt.'
     )
     expect(result.advice).not.toMatch(/-\d/)
   })

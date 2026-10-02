@@ -15,6 +15,7 @@ export default function ToolCard({ title, lede = null, children }) {
       {title && <h3 className={styles.title}>{title}</h3>}
       {lede && <p className={styles.lede}>{lede}</p>}
       {children}
+      <p className={styles.note}>Illustration only, based on the figures you enter.</p>
     </div>
   )
 }

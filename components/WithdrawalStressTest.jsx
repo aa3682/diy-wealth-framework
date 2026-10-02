@@ -76,13 +76,13 @@ export default function WithdrawalStressTest() {
       ) : steady.depletedYear !== null ? (
         <ResultPanel tone="danger">
           <div className={styles.resultBody}>
-            At a <strong>{formatPercent(withdrawalRate)}</strong> withdrawal rate the money runs out in year <strong>{steady.depletedYear}</strong> even in a steady market. Lower the withdrawal or build a larger portfolio first.
+            At a <strong>{formatPercent(withdrawalRate)}</strong> withdrawal rate the money runs out in year <strong>{steady.depletedYear}</strong> even in a steady market. A lower withdrawal or a larger starting portfolio changes the result.
           </div>
         </ResultPanel>
       ) : (
         <ResultPanel tone="warn">
           <div className={styles.resultBody}>
-            At a <strong>{formatPercent(withdrawalRate)}</strong> withdrawal rate your plan survives a steady market, but with a {failed.map(([label, s]) => `${label.toLowerCase()} the money runs out in year ${s.depletedYear}`).join(' and with a ')}. That is sequence-of-return risk: <a href="#sequence-of-return-risk-the-bond-tent">a bond tent</a> covers the early years so you are not selling after a crash.
+            At a <strong>{formatPercent(withdrawalRate)}</strong> withdrawal rate your plan survives a steady market, but with a {failed.map(([label, s]) => `${label.toLowerCase()} the money runs out in year ${s.depletedYear}`).join(' and with a ')}. That is sequence-of-return risk, the problem <a href="#sequence-of-return-risk-the-bond-tent">a bond tent</a> is built to address by covering the early years&apos; withdrawals.
           </div>
         </ResultPanel>
       )}

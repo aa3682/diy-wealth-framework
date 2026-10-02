@@ -24,7 +24,7 @@ export default function FeeDragSimulator() {
   return (
     <ToolCard
       title="The 1% Fee Drag Simulator"
-      lede="A 1% advisory fee sounds small, but you don't pay it once—you pay it every year on your total balance, compounding against you. See the math for yourself."
+      lede="A 1% asset-based fee sounds small, but it is charged every year on the whole balance, so it compounds. See the math for yourself."
     >
       <div className={styles.grid} style={{ '--min': '140px' }}>
         <NumberField id="fee-initial" label="Initial Portfolio ($)" step={5000} {...initialInvestment.inputProps} />
@@ -35,13 +35,13 @@ export default function FeeDragSimulator() {
 
       <div className={styles.grid}>
         <Tile tone="accent" label={`DIY Indexing (${DIY_EXPENSE_RATIO}% Fee)`} value={formatUSD(Math.round(fvDIY))} />
-        <Tile tone="danger" label="1% AUM Advisor" value={<span style={{ color: 'var(--tool-text)' }}>{formatUSD(Math.round(fvAUM))}</span>} />
+        <Tile tone="danger" label="1% Asset-Based Fee" value={<span style={{ color: 'var(--tool-text)' }}>{formatUSD(Math.round(fvAUM))}</span>} />
       </div>
 
       <ResultPanel tone="danger" centered>
-        <div className={styles.resultEyebrow}>Wealth Destroyed by 1% Fee</div>
+        <div className={styles.resultEyebrow}>Ending Balance Gap at a 1% Fee</div>
         <div className={styles.resultBig}>{formatUSD(Math.round(wealthLost))}</div>
-        <div className={styles.resultFine}>You surrender <strong>{formatPercent(percentageLost)}</strong> of your total potential terminal wealth to fees.</div>
+        <div className={styles.resultFine}>In this illustration, the 1% fee costs <strong>{formatPercent(percentageLost)}</strong> of the ending balance.</div>
       </ResultPanel>
     </ToolCard>
   );

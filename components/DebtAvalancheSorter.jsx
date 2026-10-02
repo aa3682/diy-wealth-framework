@@ -30,7 +30,7 @@ export default function DebtAvalancheSorter() {
   return (
     <ToolCard
       title="Debt Avalanche Sorter"
-      lede="Enter your debts. They are ranked by interest rate, highest first. Pay the minimum on all of them and route every spare dollar to the top item."
+      lede="Enter your debts. They are ranked by interest rate, highest first. Under the avalanche method, every debt gets its minimum payment and any extra cash goes to the top item."
     >
       <div className={styles.stack} style={{ gap: '0.5rem' }}>
         <div className={styles.rowGrid} aria-hidden="true">
