@@ -69,10 +69,13 @@ const themeConfig = {
     content: (
       <div style={{ width: '100%', textAlign: 'center', fontSize: '0.9rem', color: '#94a3b8' }}>
         <p style={{ margin: '0 0 0.5rem 0' }}>
-          <strong>AlignFlow LLC</strong> © <CurrentYear />
+          <strong>AlignFlow</strong> © <CurrentYear />
+        </p>
+        <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.8rem' }}>
+          Educational content only, not investment, tax or legal advice. Consult a qualified professional about your situation.
         </p>
         <p style={{ margin: 0, fontSize: '0.8rem' }}>
-          This framework is an independent educational resource and is not affiliated with the Certified Financial Planner Board of Standards, Inc.
+          AlignFlow and its products are not affiliated with, endorsed by, or certified by the Certified Financial Planner Board of Standards, Inc. CFP® and CERTIFIED FINANCIAL PLANNER® are certification marks owned by CFP Board.
         </p>
       </div>
     ),
