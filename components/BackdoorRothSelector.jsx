@@ -28,7 +28,7 @@ export default function BackdoorRothSelector() {
         <NumberField id="roth-existing-balance" label="Existing Pre-Tax IRA Balance ($)" step={1000} {...existingBalance.inputProps} />
       </div>
 
-      <ResultPanel tone={hasProRataTrap ? 'danger' : 'accent'} title={hasProRataTrap ? '⚠️ Pro-Rata Trap Detected' : '✅ Clear to Convert'}>
+      <ResultPanel tone={hasProRataTrap ? 'danger' : 'accent'} title={hasProRataTrap ? '⚠️ Pro-Rata Trap Detected' : '✅ No Pro-Rata Exposure'}>
         {hasProRataTrap ? (
           <div>
             <p className={styles.resultBody}>
@@ -39,12 +39,12 @@ export default function BackdoorRothSelector() {
               <li><strong>Taxable Portion:</strong> {formatUSD(Math.round(taxableAmount))} ({formatPercent(taxableRatio * 100)})</li>
             </ul>
             <p className={styles.resultStrong}>
-              The Solution: Roll your existing {formatUSD(activeBalance)} into an active employer 401(k) before December 31st to empty your IRA balance and make this conversion 100% tax-free.
+              One route the IRS rules allow: if an active employer 401(k) accepts roll-ins, moving the existing {formatUSD(activeBalance)} into it before December 31st brings the year-end IRA balance used in the pro-rata calculation to $0.
             </p>
           </div>
         ) : (
           <p className={styles.resultBody}>
-            You have $0 in pre-tax IRA balances. Your entire <strong>{formatUSD(activeContribution)}</strong> conversion will be 100% tax-free. Execute the conversion before December 31st.
+            You have $0 in pre-tax IRA balances, so the pro-rata rule does not apply to your <strong>{formatUSD(activeContribution)}</strong> conversion. Any earnings before the conversion are still taxable, and the IRA balance counted is the one on December 31st.
           </p>
         )}
       </ResultPanel>

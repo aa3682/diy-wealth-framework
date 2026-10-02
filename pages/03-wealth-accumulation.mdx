@@ -1,5 +1,5 @@
 ---
-description: Low-cost index fund portfolios, model allocations, and a simulator showing what a 1% advisory fee costs over 30 years.
+description: Low-cost index fund portfolios, model allocations, and a simulator showing what a 1% asset-based fee can cost over 30 years.
 ---
 
 import PortfolioAllocation from '../components/PortfolioAllocation'
@@ -14,17 +14,17 @@ Investing is not about picking the right stock; it is about capturing the broad 
 ## The Hidden Cost of Fees
 The financial services industry is built on extracting a percentage of your assets under management (AUM). While a 1% annual fee sounds small, it does not just take 1% of your returns—it permanently removes that capital from your compounding engine. 
 
-Over a 30-year horizon, a 1% fee will systematically confiscate roughly 25% of your terminal wealth. Run your own numbers below:
+Over a 30-year horizon, that gap compounds into a large share of the ending balance. Run your own numbers below:
 
 <FeeDragSimulator />
 
 ## Core Portfolio Construction
-To avoid fee drag, a DIY investor should focus on low-cost, highly liquid index funds with Expense Ratios under 0.10%. 
-* **Equities:** Utilize broad-market ETFs for your core equity exposure. Funds tracking the S&P 500 or the Nasdaq-100 provide instant diversification across major U.S. sectors and technology leaders.
-* **Fixed Income:** Depending on your age and risk tolerance, blend in bond ETFs to smooth out volatility.
+To avoid fee drag, the framework's core is built from low-cost, highly liquid index funds with Expense Ratios under 0.10%. 
+* **Equities:** Broad-market ETFs form the core equity exposure. Funds tracking the S&P 500 or the Nasdaq-100 provide instant diversification across major U.S. sectors and technology leaders.
+* **Fixed Income:** Depending on age and risk tolerance, bond ETFs are blended in to lower the portfolio's stock exposure.
 
 ### Model Portfolios
-Choose a model based on your time horizon and risk tolerance:
+Each model fits a different time horizon and risk tolerance:
 
 <Tabs items={['Aggressive Core', 'Balanced Core', 'Conservative Core', 'Digital Satellite']}>
   <Tabs.Tab>
@@ -53,10 +53,10 @@ Choose a model based on your time horizon and risk tolerance:
 <PortfolioAllocation />
 
 ## Satellite Positions and Digital Assets
-Once your core is established, limit speculative or sector-specific bets to 1-5% of your total portfolio. 
-* **Digital Asset Exposure:** If you are incorporating cryptocurrency, use regulated, liquid vehicles rather than self-custody spot holdings if you prefer structural simplicity. Carve out a maximum of 5% from the equity side of your core model. Allocation to spot Bitcoin ETFs or Ethereum ETFs allows you to capture network upside within traditional brokerage accounts.
+Once the core is established, the framework caps speculative or sector-specific positions at 1-5% of the total portfolio. 
+* **Digital Asset Exposure:** For cryptocurrency, the framework uses regulated, liquid vehicles rather than self-custody spot holdings, for those who prefer structural simplicity. The allocation is capped at 5%, carved from the equity side of the core model. Spot bitcoin and ether ETFs hold that exposure inside a traditional brokerage account.
 
 ## The Automation Rule
-Do not attempt to time the market. Set your brokerage to auto-invest a fixed dollar amount into your chosen ETFs on the 1st and 15th of every month, regardless of market news.
+The framework does not try to time the market. A brokerage auto-invest buys a fixed dollar amount of the chosen ETFs on the 1st and 15th of every month, regardless of market news.
 
 <LeadCapture />

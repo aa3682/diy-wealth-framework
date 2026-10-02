@@ -17,7 +17,7 @@ export default function BondTentModeler() {
   return (
     <ToolCard
       title="Bond Tent Modeler"
-      lede="Selling stocks during a market crash early in retirement permanently destroys your compounding engine. Calculate the exact cash and short-term bond buffer you need to ride out a bear market without selling equities."
+      lede="Selling stocks during a market crash early in retirement locks in losses. Enter your expenses to see the cash and short-term bond buffer this framework sets for the bear-market length you pick."
     >
       <div className={styles.grid}>
         <NumberField id="bondtent-monthly-burn" label="Monthly Retirement Living Expenses ($)" step={500} {...monthlyBurn.inputProps} />
@@ -32,11 +32,11 @@ export default function BondTentModeler() {
 
       <ResultPanel tone="accent" split>
         <div>
-          <div className={styles.resultEyebrow}>Required Bond Tent Buffer</div>
+          <div className={styles.resultEyebrow}>Bond Tent Buffer</div>
           <div className={styles.resultBig}>{formatUSD(tentTarget)}</div>
         </div>
         <p className={styles.resultAside}>
-          In the 3 to 5 years before you retire, gradually shift this amount from equities into cash, CDs, or short-term treasuries to secure your runway.
+          In this framework, this amount moves gradually from equities into cash, CDs, or short-term treasuries over the 3 to 5 years before retirement.
         </p>
       </ResultPanel>
     </ToolCard>

@@ -27,7 +27,7 @@ export default function EmergencyReserveCalculator() {
   return (
     <ToolCard
       title="Emergency Moat Sizer"
-      lede="Not all emergencies are created equal. Adjust your structural risk factors below to calculate your exact liquidity target."
+      lede="Not all emergencies are created equal. Adjust the structural risk factors below to see the reserve target this framework sets for them."
     >
       <NumberField id="reserve-monthly-expenses" label="Absolute Baseline Monthly Expenses ($)" step={500} spaced {...monthlyExpenses.inputProps} />
 
@@ -53,7 +53,7 @@ export default function EmergencyReserveCalculator() {
           <div className={styles.resultBig}>{formatUSD(targetDollarAmount)}</div>
         </div>
         <p className={styles.resultAside}>
-          Keep this capital in a highly liquid High-Yield Savings Account (HYSA). Do not invest these funds in the market.
+          In this framework, the reserve sits in a highly liquid High-Yield Savings Account (HYSA), outside the market.
         </p>
       </ResultPanel>
     </ToolCard>
